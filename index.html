@@ -2,24 +2,36 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Карта доверия — Страница 1</title>
     
     <style>
         body {
-            /* Проверяем жесткую привязку к нашей картинке фона */
             background: url('bg.jpg') repeat; 
             margin: 0;
-            padding: 20px 10px;
+            padding: 0; /* Убираем лишние поля, чтобы на телефоне плакат раскрылся во всю ширь */
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
         }
 
         .slide-container {
-            max-width: 800px;
+            /* На ноутбуках ограничиваем ширину до комфортных 650px (размер вертикального плаката) */
+            max-width: 650px; 
             width: 100%;
             position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Мягкая тень, отделяющая журнальный лист от фона */
+            margin: 20px auto;
+        }
+
+        /* На мобильных телефонах убираем верхние отступы, чтобы плакат прилип к краям экрана */
+        @media (max-width: 768px) {
+            .slide-container {
+                margin: 0 auto;
+                max-width: 100%;
+            }
         }
 
         .responsive-img {
@@ -29,13 +41,13 @@
             margin: 0 auto;
         }
 
-        /* Кликабельная зона поверх вашей алой кнопки */
+        /* Попиксельно пересчитанная кликабельная зона строго поверх вашей алой кнопки */
         .clickable-zone {
             position: absolute;
-            bottom: 3.5%; 
-            left: 22%;
-            width: 56%;
-            height: 5%;
+            bottom: 1.5%; /* Сместили чуть ниже, точно на вашу кнопку "Продолжить исследование" */
+            left: 20%;
+            width: 60%;
+            height: 6%;
             display: block;
             text-decoration: none;
             cursor: pointer;
@@ -45,13 +57,11 @@
 <body>
 
     <div class="slide-container">
-        <!-- Код ищет именно этот файл в вашей папке -->
         <img src="hero.png" alt="Сильная команда выдает слабые презентации" class="responsive-img">
         
-        <!-- Ссылка на будущую Страницу 2 -->
+        <!-- Бесшовный переход со Страницы 1 на Страницу 2 (в папку b1) -->
         <a href="b1/" class="clickable-zone" title="Продолжить исследование"></a>
     </div>
 
 </body>
 </html>
-
