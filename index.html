@@ -4,259 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Карта доверия — Страница 1</title>
-    
-    <!-- Подключаем чистый швейцарский шрифт Inter -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        body {
-            /* Красим бока в благородный глубокий индустриальный графит */
+        body { 
             background-color: #25282B; 
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
         }
-
-        /* НАСТРОЙКА ХЕДЕРА — светлая платина лежит поверх плаката */
-        .editorial-header {
-            width: 100%;
-            max-width: 650px;
-            box-sizing: border-box;
+        
+        /* ИНЖЕНЕРНЫЙ ХЕДЕР */
+        .editorial-header { 
+            width: 100%; 
+            max-width: 650px; 
+            box-sizing: border-box; 
             background: #F1F3F5; 
-            padding: 14px 16px;
-            font-size: 11px;
-            letter-spacing: 0.05em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #DDE1E5;
-            margin-top: 20px;
-        }
-
-        /* Общие стили для всех шагов навигации */
-        .editorial-header span, .editorial-header a { 
-            color: #71777E; 
-            text-decoration: none; 
-            font-weight: 600; 
+            padding: 18px 16px; 
+            font-size: 11px; 
+            letter-spacing: 0.05em; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #DDE1E5; 
+            margin-top: 20px; 
+            position: relative; 
         }
         
-        /* Фирменный алый капс для текущего шага ПРОБЛЕМА */
-        .editorial-header .current { 
+        /* Тонкая серая пунктирная линия на заднем плане хедера */
+        .editorial-header::before { 
+            content: ""; 
+            position: absolute; 
+            top: 23px; 
+            left: 35px; 
+            right: 35px; 
+            height: 1px; 
+            border-top: 1px dashed #CDD2D7; 
+            z-index: 1; 
+        }
+        
+        .step-node { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            position: relative; 
+            z-index: 2; 
+            text-decoration: none; 
+            width: 14%; 
+        }
+        
+        .node-dot { 
+            width: 6px; 
+            height: 6px; 
+            background-color: #FFF; 
+            border: 2px solid #A1A8B0; 
+            border-radius: 50%; 
+            margin-bottom: 8px; 
+            transition: all 0.3s ease; 
+        }
+        
+        .step-node span { 
+            color: #A1A8B0; 
+            font-weight: 600; 
+            transition: color 0.3s; 
+            text-align: center; 
+        }
+        
+        /* Состояние: Текущий шаг (ПРОБЛЕМА горит алым) */
+        .step-node.current .node-dot { 
+            background-color: #B82E12; 
+            border-color: #B82E12; 
+            box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); 
+        }
+        .step-node.current span { 
             color: #B82E12; 
             font-weight: 700; 
-            text-transform: uppercase;
-            border-bottom: 2px solid #B82E12; 
-            padding-bottom: 2px; 
+            text-transform: uppercase; 
         }
-
-        /* Стиль для открытой двери (Симптомы) */
-        .editorial-header .unlocked { 
-            color: #71777E; 
-            text-decoration: none; 
-            font-weight: 600; 
+        
+        /* Состояние: Будущие открытые ссылки-ноды */
+        .step-node.future:hover .node-dot { 
+            border-color: #B82E12; 
+            background-color: #B82E12; 
         }
-        .editorial-header .unlocked:hover { 
+        .step-node.future:hover span { 
             color: #B82E12; 
         }
 
-        .slide-container {
+        .slide-container { 
             max-width: 650px; 
-            width: 100%;
-            position: relative;
-            /* Наша светлая газетная текстура живет строго ВНУТРИ рамки плаката */
-            background: url('bg.jpg') repeat;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3); /* Плотная тень, отрывающая плакат от черного фона */
-            margin: 0 auto 40px auto;
+            width: 100%; 
+            position: relative; 
+            background: url('bg.jpg') repeat; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+            margin: 0 auto 40px auto; 
         }
-
-        /* УМНОЕ МОБИЛЬНОЕ ПРАВИЛО: на смартфонах убираем темные бока и прижимаем к краям */
-        @media (max-width: 768px) {
+        
+        @media (max-width: 768px) { 
             body { background-color: url('bg.jpg') repeat; } 
-            .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; }
-            .editorial-header { max-width: 100%; font-size: 9px; padding: 12px 8px; margin-top: 0; }
+            .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; } 
+            .editorial-header { max-width: 100%; font-size: 8px; padding: 14px 4px; margin-top: 0; } 
+            .editorial-header::before { top: 19px; left: 20px; right: 20px; } 
+            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } 
         }
-
-        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
-
-        /* НЕВИДИМАЯ ЗОНА СТРОГО ПОВЕРХ ВАШЕЙ НАРИСОВАННОЙ КНОПКИ "РАЗОБРАТЬСЯ" */
-        .clickable-zone {
-            position: absolute;
+        
+        .responsive-img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            margin: 0 auto; 
+        }
+        
+        /* НЕВИДИМАЯ ЗОНА НА КНОПКУ РАЗОБРАТЬСЯ */
+        .clickable-zone { 
+            position: absolute; 
             bottom: 4.8%; 
-            left: 31%;
-            width: 38%;
-            height: 4.5%;
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
+            left: 31%; 
+            width: 38%; 
+            height: 4.5%; 
+            display: block; 
+            cursor: pointer; 
         }
     </style>
 </head>
 <body>
 
-   <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Страница 1</title>
-    
-    <!-- Подключаем швейцарский шрифт Inter и моноширинный Roboto Mono для эффекта ИТ-интерфейса -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #1A1C1E; /* Чуть углубили графит фона для сочности стекла */
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* ПАРЯЩАЯ КАПСУЛА МАТОВОГО СТЕКЛА (GLASSMORPHISM) */
-        .editorial-header {
-            position: sticky;
-            top: 20px;
-            width: calc(100% - 32px);
-            max-width: 618px; /* Сделали чуть уже плаката, чтобы подчеркнуть парение */
-            box-sizing: border-box;
-            
-            /* Магия Apple: полупрозрачный белый фон + плотный внутренний Blur */
-            background: rgba(255, 255, 255, 0.65); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            
-            padding: 14px 20px;
-            border-radius: 30px; /* Скругление капсулы */
-            border: 1px solid rgba(255, 255, 255, 0.4); /* Тонкий блик на грани стекла */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15); /* Мягкая тень капсулы */
-            
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.03em;
-        }
-
-        .editorial-header span, .editorial-header a { 
-            color: #5A6065; 
-            text-decoration: none; 
-            font-weight: 500; 
-            transition: all 0.3s ease;
-        }
-        
-        /* ТЕКУЩИЙ ШАГ: Мягкое неоновое свечение и алый цвет */
-        .editorial-header .current { 
-            color: #FFFFFF; 
-            background-color: #B82E12;
-            font-weight: 700; 
-            text-transform: uppercase;
-            padding: 6px 14px;
-            border-radius: 20px;
-            /* Дышащий импульс свечения */
-            animation: glowPulse 2s infinite alternate;
-        }
-
-        /* БУДУЩИЕ СЕРЫЕ ССЫЛКИ С ПЛАВНЫМ ПРОЯВЛЕНИЕМ ПРИ НАВЕДЕНИИ */
-        .editorial-header .future-link { 
-            color: #9AA1A6; 
-        }
-        .editorial-header .future-link:hover { 
-            color: #B82E12; 
-            transform: translateY(-1px);
-        }
-
-        .slide-container {
-            max-width: 650px; 
-            width: 100%;
-            position: relative;
-            background: url('bg.jpg') repeat;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4); 
-            margin: -35px auto 40px auto; /* Сдвиг вверх, чтобы плакат заехал ПОД парящий хедер */
-            border-radius: 4px;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        /* УМНОЕ МОБИЛЬНОЕ ПРАВИЛО */
-        @media (max-width: 768px) {
-            body { background-color: url('bg.jpg') repeat; } 
-            .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; border-radius: 0; }
-            .editorial-header { 
-                width: 100%; 
-                max-width: 100%; 
-                border-radius: 0; 
-                border-left: none; 
-                border-right: none; 
-                border-top: none;
-                top: 0; 
-                margin-top: 0; 
-                font-size: 8px; 
-                padding: 12px 6px;
-                background: rgba(255, 255, 255, 0.85); /* Чуть плотнее на мобильных */
-            }
-            .editorial-header .current { padding: 4px 8px; }
-        }
-
-        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
-
-        .clickable-zone {
-            position: absolute;
-            bottom: 4.8%; 
-            left: 31%;
-            width: 38%;
-            height: 4.5%;
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* АНИМАЦИЯ ДЫХАНИЯ СВЕЧЕНИЯ ДЛЯ АППЛЕ-ЭФФЕКТА */
-        @keyframes glowPulse {
-            0% { box-shadow: 0 0 4px rgba(184, 46, 18, 0.2); }
-            100% { box-shadow: 0 0 14px rgba(184, 46, 18, 0.6); }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ПАРЯЩАЯ КАПСУЛА ИЗ МАТОВОГО СТЕКЛА -->
+    <!-- НАВИГАЦИЯ ПО ИНЖЕНЕРНОМУ ПУНКТИРУ (Все будущие шаги — приглушённо серые ноды) -->
     <div class="editorial-header">
-        <span class="current">Проблема</span>
-        <a href="b1/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Симптомы</a>
-        <a href="b3/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Разрыв</a>
-        <a href="p1/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Причина</a>
-        <a href="b4/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Масштаб</a>
-        <a href="b6/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Состав</a>
-        <a href="demo/?utm_source=funnel&utm_medium=header_glass&utm_campaign=stage1" class="future-link">Решение</a>
+        <div class="step-node current"><div class="node-dot"></div><span>Проблема</span></div>
+        <a href="b1/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Симптомы</span></a>
+        <a href="b3/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Разрыв</span></a>
+        <a href="p1/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Причина</span></a>
+        <a href="b4/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
+        <a href="b6/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
+        <a href="demo/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
     </div>
 
-    <!-- ТЕЛО ПЛАКАТА, ЗАЕЗЖАЮЩЕЕ ПОД ХЕДЕР -->
+    <!-- ТЕЛО СЛАЙДА (ЗАДВОЕНИЕ УБРАНО, ОТКРЫВАЕТСЯ СТРОГО ОДИН ПЛАКАТ) -->
     <div class="slide-container">
         <img src="hero.png" alt="Сильная команда выдает слабые презентации" class="responsive-img">
-        <a href="b1/" class="clickable-zone" title="Разобраться"></a>
-    </div>
-
-</body>
-</html>
-
-    <!-- ЧИСТЫЙ МОНОЛИТНЫЙ ПЛАКАТ СТРАНИЦЫ 1 -->
-    <div class="slide-container">
-        <img src="hero.png" alt="Сильная команда выдает слабые презентации" class="responsive-img">
-        
-        <!-- Невидимый No-code переход в папку b1/ (на Страницу 2) -->
         <a href="b1/" class="clickable-zone" title="Разобраться"></a>
     </div>
 
