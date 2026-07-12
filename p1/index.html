@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Эмоциональный разрыв</title>
+    <title>Карта доверия — Шаг 3: Причина</title>
     
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2 family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -44,16 +44,27 @@
             font-weight: 600; 
         }
 
+        /* Стиль для открытых дверей назад */
         .editorial-header .passed { color: #25282B; }
         .editorial-header .passed:hover { color: #B82E12; }
-        .editorial-header .current { color: #B82E12; font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #B82E12; padding-bottom: 2px; }
+        
+        /* ПРИЧИНА горит алым капсом на четвертом месте маршрута */
+        .editorial-header .current { 
+            color: #B82E12; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            border-bottom: 2px solid #B82E12; 
+            padding-bottom: 2px; 
+        }
 
-        /* ГЛАВНАЯ СЦЕНИЧЕСКАЯ ПЛОЩАДКА ДЛЯ ПОСТЕРОВ */
+        /* Стиль для будущих заблокированных дверей */
+        .editorial-header .locked { color: #A1A8B0; cursor: not-allowed; }
+
         .stage-area {
             max-width: 650px;
             width: 100%;
             position: relative;
-            height: 866px; /* Идеальная журнальная высота под формат 3:4 */
+            height: 866px; 
             margin: 10px auto 40px auto;
         }
 
@@ -67,34 +78,11 @@
             transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
         }
 
-        /* СОСТОЯНИЕ 1: ПОСТЕР 2.1 (СВЕТЛЫЙ) */
-        .poster-light {
-            background: url('../bg.jpg') repeat;
-            z-index: 10;
-            opacity: 1;
-            transform: scale(1);
-        }
+        .poster-light { background: url('../bg.jpg') repeat; z-index: 10; opacity: 1; transform: scale(1); }
+        .poster-dark { background-color: #0E0F11; z-index: 5; opacity: 0; transform: translateY(50px) scale(0.98); }
 
-        /* СОСТОЯНИЕ 2: ПОСТЕР 2.2 (ЧЕРНЫЙ) — изначально спрятан внизу бездны */
-        .poster-dark {
-            background-color: #0E0F11;
-            z-index: 5;
-            opacity: 0;
-            transform: translateY(50px) scale(0.98);
-        }
-
-        /* МАГИЯ АНИМАЦИИ ПРИ КЛИКЕ */
-        .stage-area.abyss .poster-light {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none; /* Отключаем клики на скрытом плакате */
-        }
-
-        .stage-area.abyss .poster-dark {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            z-index: 20;
-        }
+        .stage-area.abyss .poster-light { opacity: 0; transform: scale(0.95); pointer-events: none; }
+        .stage-area.abyss .poster-dark { opacity: 1; transform: translateY(0) scale(1); z-index: 20; }
 
         @media (max-width: 768px) {
             .stage-area { max-width: 100%; height: auto; aspect-ratio: 3/4; }
@@ -103,7 +91,6 @@
 
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
 
-        /* НЕВИДИМЫЙ No-Code ТРИГГЕР СТРОГО НА ПЛАШКЕ "ДОБАВЛЯЮТ ИИ" */
         .ai-trigger-zone {
             position: absolute;
             bottom: 3.5%; 
@@ -118,37 +105,34 @@
 </head>
 <body>
 
+    <!-- ИСТИННЫЙ МАРШРУТ (ПРИЧИНА горит алым капсом) -->
     <div class="editorial-header">
         <a href="../" class="passed">Проблема</a> ➔ 
-        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage2" class="passed">Симптомы</a> ➔ 
-        <span class="current">РАЗРЫВ</span> ➔ 
-        <span>Причина</span> ➔ 
-        <span>Масштаб</span> ➔ 
-        <span>Состав</span> ➔ 
-        <span>Решение</span>
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="passed">Симптомы</a> ➔ 
+        <a href="../b3/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="passed">Разрыв</a> ➔ 
+        <span class="current">ПРИЧИНА</span> ➔ 
+        <span class="locked">Масштаб</span> ➔ 
+        <span class="locked">Состав</span> ➔ 
+        <span class="locked">Решение</span>
     </div>
 
-    <!-- ТЕАТРАЛЬНАЯ СЦЕНА ВОРОНКИ -->
     <div class="stage-area" id="funnelStage">
         
-        <!-- СВЕТЛЫЙ ПОСТЕР И НЕВИДИМЫЙ КЛИК НА ПЛАШКЕ -->
+        <!-- СВЕТЛЫЙ ПОСТЕР 2.1 -->
         <div class="slide-container poster-light">
             <img src="hero5.png" alt="От меня ждут уровень целого отдела" class="responsive-img">
-            <!-- При клике запускается микро-скрипт перехода в бездну -->
             <div class="ai-trigger-zone" onclick="diveIntoAbyss()" title="Добавляют ИИ"></div>
         </div>
 
-        <!-- ЧЕРНЫЙ ПОСТЕР (БЕЗДНА) -->
+        <!-- ЧЕРНЫЙ ПОСТЕР 2.2 (БЕЗДНА) -->
         <div class="slide-container poster-dark">
             <img src="hero6.png" alt="И технологии не спасают" class="responsive-img">
         </div>
 
     </div>
 
-    <!-- МИКРО-СКРИПТ ДЛЯ КИНЕМАТОГРАФИЧНОГО ЭФФЕКТА -->
     <script>
         function diveIntoAbyss() {
-            // Команда добавляет класс .abyss, и CSS мгновенно растворяет светлый плакат и вытягивает черный
             document.getElementById('funnelStage').classList.add('abyss');
         }
     </script>
