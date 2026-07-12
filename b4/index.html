@@ -1,1 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Карта доверия — Шаг 5: Масштаб</title>
+    
+    <!-- Подключаем чистый швейцарский шрифт Inter -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Фирменный глубокий индустриальный графит по бокам */
+            background-color: #25282B; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* НАСТРОЙКА СКВOЗНОГО ХЕДЕРА — платина лежит поверх плаката */
+        .editorial-header {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #F1F3F5; 
+            padding: 14px 16px;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #DDE1E5;
+            margin-top: 20px;
+        }
+
+        .editorial-header span, .editorial-header a { 
+            color: #71777E; 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+
+        /* Пройденные шаги горят графитовым и кликабельны назад */
+        .editorial-header .passed {
+            color: #25282B;
+        }
+        .editorial-header .passed:hover {
+            color: #B82E12;
+        }
+        
+        /* МАСШТАБ вспыхивает алым капсом на пятом месте маршрута */
+        .editorial-header .current { 
+            color: #B82E12; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            border-bottom: 2px solid #B82E12; 
+            padding-bottom: 2px; 
+        }
+
+        /* Будущие заблокированные шаги */
+        .editorial-header .locked { color: #A1A8B0; cursor: not-allowed; }
+
+        .slide-container {
+            max-width: 650px; 
+            width: 100%;
+            position: relative;
+            /* Наша светлая газетная текстура на шаг выше — в корне сайта */
+            background: url('../bg.jpg') repeat;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+            margin: 0 auto 40px auto;
+        }
+
+        @media (max-width: 768px) {
+            body { background-color: url('../bg.jpg') repeat; } 
+            .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; }
+            .editorial-header { max-width: 100%; font-size: 9px; padding: 12px 8px; margin-top: 0; }
+        }
+
+        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
+
+        /* НЕВИДИМАЯ ЗОНА СТРОГО ПОВЕРХ ВАШЕЙ НАРИСОВАННОЙ КНОПКИ "СЦЕНАРИИ СТАРТА" */
+        .clickable-zone {
+            position: absolute;
+            bottom: 3.5%; /* Приземление на кнопку в подвале Брошюры 3 */
+            left: 28%;
+            width: 44%;
+            height: 4.8%;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ВЕРХНИЙ МАРШРУТ (Все прошлые открыты, МАСШТАБ горит алым) -->
+    <div class="editorial-header">
+        <a href="../" class="passed">Проблема</a> ➔ 
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="passed">Симптомы</a> ➔ 
+        <a href="../b3/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="passed">Разрыв</a> ➔ 
+        <a href="../p1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="passed">Причина</a> ➔ 
+        <span class="current">МАСШТАБ</span> ➔ 
+        <span class="locked">Состав</span> ➔ 
+        <span class="locked">Решение</span>
+    </div>
+
+    <!-- ТЕЛО ПЛАКАТА СТРАНИЦЫ 7 -->
+    <div class="slide-container">
+        <!-- Код ищет файл hero7.png, который вы подготовили -->
+        <img src="hero7.png" alt="Как начать изменения" class="responsive-img">
+        
+        <!-- Вторая Яндекс Форма сценариев старта с UTM-меткой -->
+        <a href="https://yandex.ru" class="clickable-zone" title="Сценарии старта" target="_blank"></a>
+    </div>
+
+</body>
+</html>
 
