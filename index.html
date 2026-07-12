@@ -99,18 +99,57 @@
 </head>
 <body>
 
-    <!-- ВЕРХНИЙ МАРШРУТ (ПРОБЛЕМА горит алым капсом, а Симптомы — открытая дверь-ссылка с UTM-меткой) -->
-    <!-- ВЕРХНИЙ МАРШРУТ СТРАНИЦЫ 1 (ПРОБЛЕМА горит алым капсом, остальные — открытые двери вперёд) -->
-    <div class="editorial-header">
-        <span class="current">ПРОБЛЕМА</span> ➔ 
-        <a href="b1/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Симптомы</a> ➔ 
-        <a href="b3/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Разрыв</a> ➔ 
-        <a href="p1/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Причина</a> ➔ 
-        <a href="b4/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Масштаб</a> ➔ 
-        <a href="b6/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Состав</a> ➔ 
-        <a href="demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="passed">Решение</a>
-    </div>
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Карта доверия — Страница 1</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #25282B; margin: 0; padding: 0; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        
+        /* ИНЖЕНЕРНЫЙ ХЕДЕР */
+        .editorial-header { width: 100%; max-width: 650px; box-sizing: border-box; background: #F1F3F5; padding: 18px 16px; font-size: 11px; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #DDE1E5; margin-top: 20px; position: relative; }
+        /* Пунктирная линия-капилляр на заднем плане */
+        .editorial-header::before { content: ""; position: absolute; top: 23px; left: 35px; right: 35px; height: 1px; border-top: 1px dashed #CDD2D7; z-index: 1; }
+        
+        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14%; }
+        .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 8px; transition: all 0.3s ease; }
+        .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; }
+        
+        /* Состояние: Текущий шаг */
+        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
+        .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
+        
+        /* Состояние: Будущие открытые ссылки */
+        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
+        .step-node.future:hover span { color: #B82E12; }
 
+        .slide-container { max-width: 650px; width: 100%; position: relative; background: url('bg.jpg') repeat; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 0 auto 40px auto; }
+        @media (max-width: 768px) { body { background-color: url('bg.jpg') repeat; } .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; } .editorial-header { max-width: 100%; font-size: 8px; padding: 14px 4px; margin-top: 0; } .editorial-header::before { top: 19px; left: 20px; right: 20px; } .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } }
+        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
+        .clickable-zone { position: absolute; bottom: 4.8%; left: 31%; width: 38%; height: 4.5%; display: block; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="editorial-header">
+        <div class="step-node current"><div class="node-dot"></div><span>Проблема</span></div>
+        <a href="b1/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Симптомы</span></a>
+        <a href="b3/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Разрыв</span></a>
+        <a href="p1/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Причина</span></a>
+        <a href="b4/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
+        <a href="b6/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
+        <a href="demo/?utm_source=funnel&utm_medium=header&utm_campaign=st1" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
+    </div>
+    <div class="slide-container">
+        <img src="hero.png" alt="Проблема" class="responsive-img">
+        <a href="b1/" class="clickable-zone" title="Разобраться"></a>
+    </div>
+</body>
+</html>
 
     <!-- ЧИСТЫЙ МОНОЛИТНЫЙ ПЛАКАТ СТРАНИЦЫ 1 -->
     <div class="slide-container">
