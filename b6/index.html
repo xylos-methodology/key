@@ -4,121 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Карта доверия — Шаг 6: Состав</title>
-    
-    <!-- Подключаем чистый швейцарский шрифт Inter -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        body {
-            /* Фирменный глубокий индустриальный графит по бокам */
-            background-color: #25282B; 
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* НАСТРОЙКА СКВOЗНОГО ХЕДЕРА — платина лежит поверх плаката */
-        .editorial-header {
-            width: 100%;
-            max-width: 650px;
-            box-sizing: border-box;
-            background: #F1F3F5; 
-            padding: 14px 16px;
-            font-size: 11px;
-            letter-spacing: 0.05em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #DDE1E5;
-            margin-top: 20px;
-        }
-
-        .editorial-header span, .editorial-header a { 
-            color: #71777E; 
-            text-decoration: none; 
-            font-weight: 600; 
-        }
-
-        /* Пройденные шаги горят графитовым и кликабельны назад */
-        .editorial-header .passed {
-            color: #25282B;
-        }
-        .editorial-header .passed:hover {
-            color: #B82E12;
-        }
+        body { background-color: #25282B; margin: 0; padding: 0; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .editorial-header { width: 100%; max-width: 650px; box-sizing: border-box; background: #F1F3F5; padding: 18px 16px; font-size: 11px; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #DDE1E5; margin-top: 20px; position: relative; }
+        .editorial-header::before { content: ""; position: absolute; top: 23px; left: 35px; right: 35px; height: 1px; border-top: 1px dashed #CDD2D7; z-index: 1; }
         
-        /* СОСТАВ вспыхивает алым капсом на шестом месте маршрута */
-        .editorial-header .current { 
-            color: #B82E12; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            border-bottom: 2px solid #B82E12; 
-            padding-bottom: 2px; 
-        }
+        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14%; }
+        .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 8px; transition: all 0.3s ease; }
+        .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; }
+        
+        .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
+        .step-node.passed span { color: #25282B; }
+        .step-node.passed:hover span { color: #B82E12; }
+        
+        /* Текущий СОСТАВ */
+        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
+        .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
+        
+        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
+        .step-node.future:hover span { color: #B82E12; }
 
-        /* Финальный заблокированный шаг */
-        .editorial-header .locked { color: #A1A8B0; cursor: not-allowed; }
-
-        .slide-container {
-            max-width: 650px; 
-            width: 100%;
-            position: relative;
-            /* Наша светлая газетная текстура на два шага выше — в корне сайта */
-            background: url('../bg.jpg') repeat;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
-            margin: 0 auto 40px auto;
-        }
-
-        @media (max-width: 768px) {
-            body { background-color: url('../bg.jpg') repeat; } 
-            .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; }
-            .editorial-header { max-width: 100%; font-size: 9px; padding: 12px 8px; margin-top: 0; }
-        }
-
+        .slide-container { max-width: 650px; width: 100%; position: relative; background: url('../bg.jpg') repeat; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 0 auto 40px auto; }
+        @media (max-width: 768px) { body { background-color: url('../bg.jpg') repeat; } .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; } .editorial-header { max-width: 100%; font-size: 8px; padding: 14px 4px; margin-top: 0; } .editorial-header::before { top: 19px; left: 20px; right: 20px; } .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
-
-        /* НЕВИДИМАЯ ЗОНА СТРОГО ПОВЕРХ ВАШЕЙ НАРИСОВАННОЙ КНОПКИ "ПОСМОТРИТЕ, КАК РАБОТАЕТ СИСТЕМА" */
-        .clickable-zone {
-            position: absolute;
-            bottom: 3.2%; /* Идеальное приземление на длинную алую плашку внизу Брошюры 4 */
-            left: 20%;
-            width: 60%;
-            height: 4.8%;
-            display: block;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .clickable-zone { position: absolute; bottom: 3.2%; left: 20%; width: 60%; height: 4.8%; display: block; text-decoration: none; cursor: pointer; }
     </style>
 </head>
 <body>
-
-       <!-- ВЕРХНИЙ МАРШРУТ СТРАНИЦЫ 9 (СОСТАВ горит алым капсом) -->
     <div class="editorial-header">
-        <a href="../" class="passed">Проблема</a> ➔ 
-        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="passed">Симптомы</a> ➔ 
-        <a href="../b3/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="passed">Разрыв</a> ➔ 
-        <a href="../p1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="passed">Причина</a> ➔ 
-        <a href="../b4/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="passed">Масштаб</a> ➔ 
-        <span class="current">СОСТАВ</span> ➔ 
-        <a href="../demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage4" class="passed">Решение</a>
+        <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
+        <a href="../b1/?utm_source=funnel&utm_medium=header&utm_campaign=st6" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
+        <a href="../b3/?utm_source=funnel&utm_medium=header&utm_campaign=st6" class="step-node passed"><div class="node-dot"></div><span>Разрыв</span></a>
+        <a href="../p1/?utm_source=funnel&utm_medium=header&utm_campaign=st6" class="step-node passed"><div class="node-dot"></div><span>Причина</span></a>
+        <a href="../b4/?utm_source=funnel&utm_medium=header&utm_campaign=st6" class="step-node passed"><div class="node-dot"></div><span>Масштаб</span></a>
+        <div class="step-node current"><div class="node-dot"></div><span>Состав</span></div>
+        <a href="../demo/?utm_source=funnel&utm_medium=header&utm_campaign=st6" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
     </div>
-
-
-    <!-- ТЕЛО ПЛАКАТА СТРАНИЦЫ 9 -->
     <div class="slide-container">
-        <!-- Код подтянет ваш файл hero9.png -->
-        <img src="hero9.png" alt="Состав изменений определяет результат" class="responsive-img">
-        
-        <!-- Чистый No-code переход в будущую папку demo/ (на микродемонстрацию) -->
+        <img src="hero9.png" alt="Состав" class="responsive-img">
         <a href="../demo/?utm_source=funnel&utm_medium=content_forward&utm_campaign=stage4" class="clickable-zone" title="Посмотрите, как работает система"></a>
     </div>
-
 </body>
 </html>
-
