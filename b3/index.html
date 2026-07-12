@@ -11,7 +11,6 @@
 
     <style>
         body {
-            /* Фирменный графит по бокам */
             background-color: #25282B; 
             margin: 0;
             padding: 0;
@@ -22,7 +21,6 @@
             min-height: 100vh;
         }
 
-        /* НАСТРОЙКА СКВOЗНОГО ХЕДЕРА — платина лежит поверх плаката */
         .editorial-header {
             width: 100%;
             max-width: 650px;
@@ -44,7 +42,7 @@
             font-weight: 600; 
         }
 
-        /* Пройденные шаги Проблема и Симптомы горят графитовым и кликабельны назад */
+        /* Стиль для всех открытых ссылок-дверей в хедере */
         .editorial-header .passed {
             color: #25282B;
         }
@@ -52,7 +50,7 @@
             color: #B82E12;
         }
         
-        /* РАЗРЫВ загорается алым капсом по нашей закономерности */
+        /* Фирменный алый капс текущего шага РАЗРЫВ по вашей закономерности */
         .editorial-header .current { 
             color: #B82E12; 
             font-weight: 700; 
@@ -81,7 +79,7 @@
         /* НЕВИДИМАЯ ЗОНА СТРОГО ПОВЕРХ ВАШЕЙ НАРИСОВАННОЙ КНОПКИ "В ЧЁМ ПРИЧИНА?" */
         .clickable-zone {
             position: absolute;
-            bottom: 2.1%; /* Попиксельно легли точно на алую плашку в самом низу */
+            bottom: 2.1%; 
             left: 31%;
             width: 38%;
             height: 4.2%;
@@ -93,10 +91,11 @@
 </head>
 <body>
 
-    <!-- ВЕРХНИЙ МАРШРУТ (Проблема и Симптомы — ссылки назад, РАЗРЫВ — горит алым капсом) -->
+    <!-- ВЕРХНИЙ МАРШРУТ (Проблема, Симптомы и Сценарии — живые ссылки с UTM-метками) -->
     <div class="editorial-header">
         <a href="../" class="passed">Проблема</a> ➔ 
-        <a href="../b1/" class="passed">Симптомы</a> ➔ 
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage2" class="passed">Симптомы</a> ➔ 
+        <a href="../b2/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage2" class="passed">Сценарии</a> ➔ 
         <span class="current">РАЗРЫВ</span> ➔ 
         <span>Причина</span> ➔ 
         <span>Масштаб</span> ➔ 
@@ -104,14 +103,13 @@
         <span>Решение</span>
     </div>
 
-    <!-- МОНОЛИТНЫЙ ПЛАКАТ СТРАНИЦЫ 4 -->
     <div class="slide-container">
+        <!-- Код ищет именно этот файл в вашей папке -->
         <img src="hero4.png" alt="Почему одинаковая задача дает разный уровень презентаций" class="responsive-img">
         
-        <!-- Клик по кнопке переведёт в будущую папку причин b4/ -->
-        <a href="../b4/" class="clickable-zone" title="В чём причина?"></a>
+        <!-- Невидимый клик переведёт в будущую папку причин b4/ -->
+        <a href="../b4/?utm_source=funnel&utm_medium=content_forward&utm_campaign=stage2" class="clickable-zone" title="В чём причина?"></a>
     </div>
 
 </body>
 </html>
-
