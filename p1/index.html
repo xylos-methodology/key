@@ -26,7 +26,6 @@
             flex-direction: column; 
             align-items: center; 
             min-height: 100vh;
-            /* Разрешаем вертикальный скролл, чтобы увидеть футер */
             overflow-y: auto;
             overflow-x: hidden;
         }
@@ -94,12 +93,11 @@
         .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
         .step-node.future:hover span { color: #B82E12; }
 
-        /* СЦЕНА КАСКАДА ПОСТЕРOВ */
+        /* АДАПТИВНАЯ СЦЕНА КАСКАДА ПОСТЕРOВ */
         .stage-area { 
             max-width: 650px; 
             width: 100%; 
             position: relative; 
-            height: auto;
             aspect-ratio: 3/4; 
             margin: 0 auto; 
         }
@@ -140,7 +138,7 @@
         
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
         
-        /* БРИТВЕННО-ТОЧНАЯ КЛИКАБЕЛЬНАЯ ЗОНА НАД АЛОЙ ПЛАШКОЙ "ДОБАВЛЯЮТ ИИ" */
+        /* КЛИКАБЕЛЬНАЯ ЗОНА НАД АЛОЙ ПЛАШКОЙ "ДОБАВЛЯЮТ ИИ" */
         .ai-trigger-zone { 
             position: absolute; 
             bottom: 3.0%; 
@@ -221,3 +219,4 @@
         <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
         <a href="../b3/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage3" class="step-node passed"><div class="node-dot"></div><span>Разрыв</span></a>
         <div class="step-node current"><div class="node-dot"></div><span>Причина</span></div>
+        <a href="../b4/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage3" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
