@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Страница 2</title>
+    <title>Карта доверия — Страница 3: Сценарии</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -79,17 +79,16 @@
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
-        /* Пройденный шаг Проблема */
+        /* Пройденные шаги назад (Проблема и Симптомы) */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
 
-        /* Текущий шаг СИМПТОМЫ */
+        /* СЕКРЕТНЫЙ ТЕКУЩИЙ ШАГ СЦЕНАРИИ (Занимает законное 3 место на этой скрытой странице) */
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
         
-        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
-        .step-node.future:hover span { color: #B82E12; }
+        .step-node.locked span { color: #A1A8B0; cursor: not-allowed; }
 
         /* КОНТЕЙНЕР ДЛЯ МОНОЛИТНОГО ПЛАКАТА С АВТO-РАЗМЫТИЕМ */
         .slide-container { 
@@ -109,7 +108,6 @@
         }
 
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
-        .clickable-zone { position: absolute; bottom: 2.3%; left: 36%; width: 28%; height: 3.2%; display: block; cursor: pointer; }
 
         /* ПРЕМИАЛЬНЫЙ АСКЕТИЧНЫЙ ПОДВАЛ (ФУТЕР) */
         .premium-footer {
@@ -132,7 +130,6 @@
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) { 
             body { background-color: url('../bg.jpg') repeat; } 
             .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
@@ -174,22 +171,21 @@
         <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
-    <!-- ВНУТРЕННИЙ ПУНКТИР С ЧИСТЫМИ UTM-МЕТКАМИ ДЛЯ СИМПТОМОВ -->
+    <!-- ИНЖЕНЕРНЫЙ ПУНКТИР С АЛЫМ МАРКЕРОМ СЦЕНАРИИ -->
     <div class="editorial-header">
         <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
-        <div class="step-node current"><div class="node-dot"></div><span>Симптомы</span></div>
-        <a href="../b3/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Разрыв</span></a>
-        <a href="../p1/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Причина</span></a>
-        <a href="../b4/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
-        <a href="../b6/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
-        <a href="../demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage2" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
+        <div class="step-node current"><div class="node-dot"></div><span>Сценарии</span></div>
+        <div class="step-node locked"><div class="node-dot"></div><span>Разрыв</span></div>
+        <div class="step-node locked"><div class="node-dot"></div><span>Причина</span></div>
+        <div class="step-node locked"><div class="node-dot"></div><span>Масштаб</span></div>
+        <div class="step-node locked"><div class="node-dot"></div><span>Решение</span></div>
     </div>
 
     <!-- КОНТЕЙНЕР С ID ДЛЯ АВТO-РАЗМЫТИЯ -->
     <div class="slide-container" id="secureContainer">
-        <img src="hero2.png" alt="Симптомы" class="responsive-img">
-        <!-- ЖЁСТКАЯ ЧИСТАЯ ССЫЛКА НА ВАШ ЧЕКАП -->
-        <a href="https://forms.yandex.ru/cloud/6a2fdca702848fae664c5da1" class="clickable-zone" title="Пройти чекап" target="_blank"></a>
+        <!-- Относительный путь выровнен идеально под корень папки b2/ -->
+        <img src="hero3.png" alt="Какие сценарии работы создают потери времени" class="responsive-img">
     </div>
 
     <!-- ПОДВАЛ -->
@@ -199,3 +195,18 @@
             <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
         </div>
         <div class="footer-legal-shield">
+            Материалы страницы являются объектом интеллектуальной собственности. Любое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
+        </div>
+        <div class="footer-expert-tag">
+            Разработано методологическим бюро SlideCraft Pro для Ксайлос
+        </div>
+    </footer>
+
+    <!-- УКРЕПЛЕННЫЙ КИБЕР-ЗАСЛOН -->
+    <script>
+        const target = document.getElementById('secureContainer');
+
+        // 1. Блокировка правой кнопки мыши
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // 2. Блокировка комбинаций клавиш
