@@ -30,7 +30,7 @@
             overflow-x: hidden;
         }
         
-        /* 1. БАЗОВАЯ СТРИКТНАЯ ШАПКА (TOP BAR) */
+        /* 1. БАЗОВАЯ ШАПКА (TOP BAR) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -83,19 +83,20 @@
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
-        /* Пройденные ноды хедера назад */
+        /* Пройденные шаги назад */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
 
-        /* Алая нода ПРИЧИНА */
+        /* Текущий шаг ПРИЧИНА */
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
         
+        /* Будущие шаги вперед */
         .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
         .step-node.future:hover span { color: #B82E12; }
 
-        /* 3. АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ ДВУХ ПОСТЕРОВ С ПРОПОРЦИЕЙ 3:4 */
+        /* 3. АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ ДВУХ ПОСТЕРОВ 3:4 */
         .stage-area { 
             max-width: 650px; 
             width: 100%; 
@@ -127,19 +128,19 @@
         }
         .stage-area.abyss::after { color: rgba(255, 255, 255, 0.02) !important; }
 
-        /* Слои плакатов */
+        /* Контейнеры плакатов */
         .slide-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; }
         
         .poster-light { background-color: #F8F9FA; z-index: 10; opacity: 1; transform: scale(1); }
         .poster-dark { background-color: #0E0F11; z-index: 5; opacity: 0; transform: translateY(50px) scale(0.98); }
         
-        /* Стили перелистывания (Эффект бездны) */
+        /* Стили интерактивного перехода (Эффект бездны) */
         .stage-area.abyss .poster-light { opacity: 0; transform: scale(0.95); pointer-events: none; }
         .stage-area.abyss .poster-dark { opacity: 1; transform: translateY(0) scale(1); z-index: 20; }
         
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
         
-        /* 4. ЗOНА КЛИКА СТРОГО НАД ПЛАШКОЙ "ДОБАВЛЯЮТ ИИ" */
+        /* 4. ЗОНА КЛИКА СТРОГО НАД ПЛАШКОЙ "ДОБАВЛЯЮТ ИИ" */
         .ai-trigger-zone { 
             position: absolute; 
             bottom: 3.0%; 
@@ -174,7 +175,7 @@
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        /* ТРЕНДОВАЯ МОБИЛЬНАЯ АДАПТАЦИЯ */
+        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
         @media (max-width: 768px) { 
             .stage-area, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
@@ -188,7 +189,7 @@
             .stage-area::after { font-size: 8px; padding: 20px; line-height: 6; }
         }
 
-        /* 6. ЗАЩИТА: КИБЕР-ЩИТ ОТ ОБХОДНОЙ ПЕЧАТИ В PDF */
+        /* КИБЕРЗАЩИТА: ЩИТ ОТ ПЕЧАТИ В PDF */
         @media print {
             body, .top-brand-bar, .editorial-header, .stage-area, .premium-footer { display: none !important; }
             html::after {
