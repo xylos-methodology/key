@@ -94,7 +94,7 @@
         .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
         .step-node.future:hover span { color: #B82E12; }
 
-        /* АДАПТИВНАЯ СЦЕНА С АВТO-РАЗМЫТИЕМ */
+        /* АДАПТИВНАЯ СЦЕНА С ИЗОЛИРОВАННЫМ СЛОЕМ И АВТO-РАЗМЫТИЕМ */
         .stage-area { 
             max-width: 650px; 
             width: 100%; 
@@ -112,7 +112,8 @@
 
         .slide-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; }
         
-        .poster-light { background: url('../bg.jpg') repeat; z-index: 10; opacity: 1; transform: scale(1); }
+        /* ЖЁСТКО ИЗОЛИРОВАННЫЙ СВЕТЛЫЙ ФОН ПЕРВОГО ПОСТЕРА ВМЕСТО КАРТИНКИ BG */
+        .poster-light { background-color: #F8F9FA; z-index: 10; opacity: 1; transform: scale(1); }
         .poster-dark { background-color: #0E0F11; z-index: 5; opacity: 0; transform: translateY(50px) scale(0.98); }
         
         /* Магия проваливания в темноту */
@@ -146,7 +147,7 @@
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
         @media (max-width: 768px) { 
-            body { background-color: url('../bg.jpg') repeat; } 
+            body { background-color: #25282B; } 
             .stage-area, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
             .editorial-header { padding: 12px 4px; } 
@@ -199,5 +200,5 @@
 
     <!-- ТЕАТРАЛЬНАЯ СЦЕНА С ID ДЛЯ АВТO-РАЗМЫТИЯ -->
     <div class="stage-area" id="secureContainer">
+        
         <!-- СВЕТЛЫЙ ПОСТЕР -->
-        <div class="slide-container poster-light">
