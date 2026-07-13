@@ -6,48 +6,197 @@
     <title>Карта доверия — Страница 4</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #25282B; margin: 0; padding: 0; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .editorial-header { width: 100%; max-width: 650px; box-sizing: border-box; background: #F1F3F5; padding: 18px 16px; font-size: 11px; letter-spacing: 0.05em; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #DDE1E5; margin-top: 20px; position: relative; }
-        .editorial-header::before { content: ""; position: absolute; top: 23px; left: 35px; right: 35px; height: 1px; border-top: 1px dashed #CDD2D7; z-index: 1; }
+        /* БЛОКИРОВКА ВЫДЕЛЕНИЯ ТЕКСТА И ЭЛЕМЕНТОВ НА САЙТЕ */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body { 
+            background-color: #25282B; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+        
+        /* СТЕРИЛЬНАЯ ИНЖЕНЕРНАЯ ШАПКА (TOP BAR) */
+        .top-brand-bar {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            padding: 10px 16px;
+            font-size: 9px;
+            letter-spacing: 0.06em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E6E9ED;
+            margin-top: 20px;
+        }
+        .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
+        .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
+        .top-brand-bar .session-status { font-weight: 600; color: #108548; display: flex; align-items: center; gap: 5px; }
+        .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        /* ИНЖЕНЕРНЫЙ ХЕДЕР НА КЛИКАБЕЛЬНЫХ НОДАХ */
+        .editorial-header { 
+            width: 100%; 
+            max-width: 650px; 
+            box-sizing: border-box; 
+            background: #F1F3F5; 
+            padding: 16px 16px; 
+            font-size: 10px; 
+            letter-spacing: 0.05em; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #DDE1E5; 
+            position: relative; 
+        }
+        .editorial-header::before { 
+            content: ""; 
+            position: absolute; 
+            top: 21px; 
+            left: 35px; 
+            right: 35px; 
+            height: 1px; 
+            border-top: 1px dashed #CDD2D7; 
+            z-index: 1; 
+        }
         
         .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14%; }
-        .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 8px; transition: all 0.3s ease; }
-        .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; }
+        .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
+        .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
-        /* Пройденные Проблема и Симптомы */
+        /* Пройденные шаги назад (Проблема и Симптомы) */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
-        
-        /* Текущий РАЗРЫВ */
+
+        /* Текущий шаг РАЗРЫВ */
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
         
-        /* Будущие */
         .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
         .step-node.future:hover span { color: #B82E12; }
 
-        .slide-container { max-width: 650px; width: 100%; position: relative; background: url('../bg.jpg') repeat; box-shadow: 0 10px 40px rgba(0,0,0,0.3); margin: 0 auto 40px auto; }
-        @media (max-width: 768px) { body { background-color: url('../bg.jpg') repeat; } .slide-container { margin: 0 auto; max-width: 100%; box-shadow: none; } .editorial-header { max-width: 100%; font-size: 8px; padding: 14px 4px; margin-top: 0; } .editorial-header::before { top: 19px; left: 20px; right: 20px; } .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } }
-        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; }
+        /* КОНТЕЙНЕР ДЛЯ МОНОЛИТНОГО ПЛАКАТА С АВТO-РАЗМЫТИЕМ */
+        .slide-container { 
+            max-width: 650px; 
+            width: 100%; 
+            position: relative; 
+            background: url('../bg.jpg') repeat; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+            margin: 0 auto; 
+            transition: filter 0.2s ease, opacity 0.2s ease;
+        }
+        
+        /* ЭФФЕКТ ДЛЯ ЗАЩИТЫ ОТ СКРИНШОТОВ (BLUR SHIELD) */
+        .slide-container.blurred {
+            filter: blur(30px) grayscale(1);
+            opacity: 0.1;
+        }
+
+        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
+        
+        /* НЕВИДИМАЯ ЗОНА СТРОГО ПОВЕРХ ВАШЕЙ НАРИСОВАННОЙ КНОПКИ "В ЧЁМ ПРИЧИНА?" */
         .clickable-zone { position: absolute; bottom: 2.1%; left: 31%; width: 38%; height: 4.2%; display: block; cursor: pointer; }
+
+        /* ПРЕМИАЛЬНЫЙ АСКЕТИЧНЫЙ ПОДВАЛ (ФУТЕР) */
+        .premium-footer {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #1A1D1F;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .footer-logo-link { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #75B629; text-decoration: none; display: flex; align-items: center; transition: opacity 0.2s; }
+        .footer-logo-link span { color: #005A2B; } 
+        .footer-logo-link:hover { opacity: 0.8; }
+        .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
+        
+        .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
+        .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
+
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+        @media (max-width: 768px) { 
+            body { background-color: url('../bg.jpg') repeat; } 
+            .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
+            .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
+            .editorial-header { padding: 12px 4px; } 
+            .editorial-header::before { top: 17px; left: 20px; right: 20px; } 
+            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } 
+            .step-node span { font-size: 8px; }
+            .premium-footer { padding: 20px 12px; }
+            .footer-logo-link { font-size: 11px; }
+            .footer-copyright { font-size: 9px; }
+        }
+
+        /* МАКСИМАЛЬНАЯ ЗАЩИТА ОТ ПЕЧАТИ (CSS PRINT SHIELD) */
+        @media print {
+            body, .top-brand-bar, .editorial-header, .slide-container, .premium-footer { display: none !important; }
+            html::after {
+                content: "МАТЕРИАЛ ЗАЩИЩЕН АВТОРСКИМ ПРАВОМ УЧЕБНОГО ЦЕНТРА КСАЙЛОС. ПЕЧАТЬ ЗАПРЕЩЕНА ПОЛИТИКОЙ БЕЗОПАСНОСТИ.";
+                font-family: 'Inter', sans-serif;
+                font-size: 14px;
+                color: #B82E12;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                text-align: center;
+                padding: 40px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- ВЕРХНЯЯ ШАПКА -->
+    <div class="top-brand-bar">
+        <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
+        <div class="owner-title">Учебный центр Ксайлос</div>
+        <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
+    </div>
+
+    <!-- ВНУТРЕННИЙ ПУНКТИР С ЧИСТЫМИ UTM-МЕТКАМИ ДЛЯ РАЗРЫВА -->
     <div class="editorial-header">
         <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
-        <a href="../b1/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage2" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
         <div class="step-node current"><div class="node-dot"></div><span>Разрыв</span></div>
-        <a href="../p1/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future"><div class="node-dot"></div><span>Причина</span></a>
-        <a href="../b4/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
-        <a href="../b6/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
-        <a href="../demo/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
+        <a href="../p1/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Причина</span></a>
+        <a href="../b4/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
+        <a href="../b6/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
+        <a href="../demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage2" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
     </div>
-    <div class="slide-container">
+
+    <!-- КОНТЕЙНЕР С ID ДЛЯ АВТO-РАЗМЫТИЯ -->
+    <div class="slide-container" id="secureContainer">
         <img src="hero4.png" alt="Разрыв" class="responsive-img">
         <a href="../p1/?utm_source=funnel&utm_medium=content_forward&utm_campaign=stage2" class="clickable-zone" title="В чём причина?"></a>
     </div>
-</body>
-</html>
+
+    <!-- ПОДВАЛ -->
+    <footer class="premium-footer">
+        <div class="footer-top-row">
+            <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на official сайт Ксайлос"><span>К</span>САЙЛОС</a>
+            <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
+        </div>
+        <div class="footer-legal-shield">
