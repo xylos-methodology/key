@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Шаг 3: Причина</title>
+    <title>Карта доверия — Страница 5: Причина</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* КИБЕРЗАЩИТА: БЛОКИРОВКА ВЫДЕЛЕНИЯ ТЕКСТА И ЭЛЕМЕНТОВ */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -17,27 +16,30 @@
             -webkit-touch-callout: none;
         }
 
-        body {
-            background-color: #25282B;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+        body { 
+            background-image: url('../workspace-bg.jpg');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
             overflow-y: auto;
             overflow-x: hidden;
         }
-
-        /* 1. СТЕРИЛЬНАЯ ИНЖЕНЕРНАЯ ШАПКА (TOP BAR) */
+        
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
             box-sizing: border-box;
             background: #FFFFFF;
             padding: 10px 16px;
-            font-size: 9px;
+            font-size: 10px;
             letter-spacing: 0.06em;
             display: flex;
             justify-content: space-between;
@@ -45,6 +47,8 @@
             border-bottom: 1px solid #E6E9ED;
             margin-top: 20px;
             z-index: 101;
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease forwards;
         }
         .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
         .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
@@ -52,80 +56,68 @@
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* 2. НАВИГАЦИОННЫЙ ХЕДЕР («ИНЖЕНЕРНЫЙ ПУНКТИР») */
-        .editorial-header {
-            width: 100%;
-            max-width: 650px;
-            box-sizing: border-box;
-            background: #F1F3F5;
-            padding: 16px 16px;
-            font-size: 10px;
-            letter-spacing: 0.05em;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #DDE1E5;
+        .editorial-header { 
+            width: 100%; 
+            max-width: 650px; 
+            box-sizing: border-box; 
+            background: #F1F3F5; 
+            padding: 16px 16px; 
+            font-size: 10px; 
+            letter-spacing: 0.05em; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #DDE1E5; 
             z-index: 100;
-            position: relative;
+            position: relative; 
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease 0.15s forwards;
         }
-        .editorial-header::before {
-            content: "";
-            position: absolute;
-            top: 21px;
-            left: 35px;
-            right: 35px;
-            height: 1px;
-            border-top: 1px dashed #CDD2D7;
-            z-index: 1;
+        .editorial-header::before { 
+            content: ""; 
+            position: absolute; 
+            top: 21px; 
+            left: 35px; 
+            right: 35px; 
+            height: 1px; 
+            border-top: 1px dashed #CDD2D7; 
+            z-index: 1; 
         }
-        .step-node {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-            text-decoration: none;
-            width: 14%;
-        }
-        .node-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #FFF;
-            border: 2px solid #A1A8B0;
-            border-radius: 50%;
-            margin-bottom: 6px;
-            transition: all 0.3s ease;
-        }
-        .step-node span {
-            color: #A1A8B0;
-            font-weight: 600;
-            transition: color 0.3s;
-            text-align: center;
-            font-size: 10px;
-        }
-        /* Пройденные шаги (черные) */
+        
+        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14%; }
+        .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
+        .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
+        
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
-        /* Текущий шаг ПРИЧИНА (алая) */
-        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184,46,18,0.2); }
+
+        .step-node.current .node-dot { 
+            background-color: #B82E12; 
+            border-color: #B82E12; 
+            box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4);
+            animation: pulseGlow 2s infinite;
+        }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
-        /* Будущие шаги */
-        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
+        
+        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; transform: scale(1.3); }
         .step-node.future:hover span { color: #B82E12; }
 
-        /* 3. АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ ДВУХ ПОСТЕРОВ 3:4 */
-        .stage-area {
-            max-width: 650px;
-            width: 100%;
-            position: relative;
-            aspect-ratio: 3/4;
-            margin: 0 auto;
+        .step-node.passive .node-dot { border-color: #A1A8B0; background-color: #FFF; cursor: default; }
+        .step-node.passive span { color: #A1A8B0; cursor: default; }
+
+        .stage-area { 
+            max-width: 650px; 
+            width: 100%; 
+            position: relative; 
+            aspect-ratio: 3/4; 
+            margin: 16px auto 0 auto;
+            opacity: 0;
+            animation: fadeScaleIn 0.5s ease 0.3s forwards;
         }
 
-        /* ЦИФРОВАЯ ВОТЕРМАРКА ПОВЕРХ КАРТИНОК */
         .stage-area::after {
-            content: "УЦ КСАЙЛОС • ЗАЩИЩЕНО АВТОРСКИМ ПРАВОМ УЦ КСАЙЛОС • ЗАЩИЩЕНО АВТОРСКИМ ПРАВОМ";
+            content: "УЦ КСАЙЛОС • ЗАЩИЩЕНО АВТОРСКИМ ПРАВОМ   УЦ КСАЙЛОС • ЗАЩИЩЕНО АВТОРСКИМ ПРАВОМ";
             position: absolute;
             top: 0;
             left: 0;
@@ -136,7 +128,7 @@
             font-weight: 700;
             font-size: 11px;
             letter-spacing: 0.1em;
-            color: rgba(0,0,0,0.03);
+            color: rgba(0, 0, 0, 0.03);
             display: flex;
             flex-wrap: wrap;
             padding: 40px;
@@ -144,46 +136,28 @@
             transform: rotate(-15deg) scale(1.1);
             line-height: 8;
         }
-        .stage-area.abyss::after { color: rgba(255,255,255,0.02) !important; }
+        .stage-area.abyss::after { color: rgba(255, 255, 255, 0.02) !important; }
 
-        /* Слои плакатов */
-        .slide-container {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
-        }
+        .slide-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 12px 60px rgba(0,0,0,0.2); transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; }
         .poster-light { background-color: #F8F9FA; z-index: 10; opacity: 1; transform: scale(1); }
         .poster-dark { background-color: #0E0F11; z-index: 5; opacity: 0; transform: translateY(50px) scale(0.98); }
-
-        /* Стили интерактивного перехода (Эффект бездны) */
+        
         .stage-area.abyss .poster-light { opacity: 0; transform: scale(0.95); pointer-events: none; }
         .stage-area.abyss .poster-dark { opacity: 1; transform: translateY(0) scale(1); z-index: 20; }
-
-        .responsive-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            pointer-events: none;
+        
+        .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
+        
+        .ai-trigger-zone { 
+            position: absolute; 
+            bottom: 3.0%; 
+            left: 20%; 
+            width: 60%; 
+            height: 6.0%; 
+            display: block; 
+            cursor: pointer; 
+            z-index: 50; 
         }
 
-        /* 4. ЗОНА КЛИКА СТРОГО НАД ПЛАШКОЙ "ДОБАВЛЯЮТ ИИ" */
-        .ai-trigger-zone {
-            position: absolute;
-            bottom: 3.0%;
-            left: 20%;
-            width: 60%;
-            height: 6.0%;
-            display: block;
-            cursor: pointer;
-            z-index: 50;
-        }
-
-        /* 5. ПОДВАЛ (ФУТЕР) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -196,36 +170,51 @@
             margin-top: 20px;
             margin-bottom: 40px;
             z-index: 101;
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease 0.5s forwards;
         }
         .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .footer-logo-link { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #75B629; text-decoration: none; display: flex; align-items: center; transition: opacity 0.2s; }
-        .footer-logo-link span { color: #005A2B; }
-        .footer-logo-link:hover { opacity: 0.8; }
+        .footer-logo-link { display: flex; align-items: center; text-decoration: none; transition: opacity 0.2s; }
+        .footer-logo-link img { height: 24px; width: auto; display: block; }
+        .footer-logo-link:hover { opacity: 0.85; }
         .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        /* АДАПТАЦИЯ ПОД СМАРТФОНЫ */
-        @media (max-width: 768px) {
-            .stage-area, .top-brand-bar, .editorial-header, .premium-footer {
-                max-width: 100%;
-                box-shadow: none;
-                margin-top: 0;
-                margin-bottom: 0;
-                border-radius: 0;
-            }
-            .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
-            .editorial-header { padding: 12px 4px; }
-            .editorial-header::before { top: 17px; left: 20px; right: 20px; }
-            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; }
-            .step-node span { font-size: 8px; }
-            .premium-footer { padding: 20px 12px; margin-top: 10px; }
-            .footer-logo-link { font-size: 11px; }
-            .footer-copyright { font-size: 9px; }
-            .stage-area::after { font-size: 8px; padding: 20px; line-height: 6; }
+        @keyframes fadeSlideDown {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeScaleIn {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(184, 46, 18, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0); }
         }
 
-        /* КИБЕРЗАЩИТА: ЩИТ ОТ ПЕЧАТИ В PDF */
+        @media (max-width: 768px) { 
+            body { background-image: none; background-color: #25282B; } 
+            .stage-area, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
+            .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
+            .editorial-header { padding: 12px 4px; } 
+            .editorial-header::before { top: 17px; left: 20px; right: 20px; } 
+            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } 
+            .step-node span { font-size: 8px; }
+            .premium-footer { padding: 20px 12px; margin-top: 10px; }
+            .footer-logo-link img { height: 20px; }
+            .footer-copyright { font-size: 9px; }
+            .stage-area::after { font-size: 8px; padding: 20px; line-height: 6; }
+            .top-brand-bar, .editorial-header, .stage-area, .premium-footer {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .step-node.current .node-dot { animation: none !important; }
+        }
+
         @media print {
             body, .top-brand-bar, .editorial-header, .stage-area, .premium-footer { display: none !important; }
             html::after {
@@ -246,64 +235,37 @@
 </head>
 <body>
 
-    <!-- 1. ШАПКА -->
     <div class="top-brand-bar">
         <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
         <div class="owner-title">Учебный центр Ксайлос</div>
         <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
-    <!-- 2. ХЕДЕР (полный набор нод) -->
     <div class="editorial-header">
-        <a href="../" class="step-node passed">
-            <div class="node-dot"></div>
-            <span>Проблема</span>
-        </a>
-        <a href="../b1/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node passed">
-            <div class="node-dot"></div>
-            <span>Симптомы</span>
-        </a>
-        <a href="../b3/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node passed">
-            <div class="node-dot"></div>
-            <span>Разрыв</span>
-        </a>
-        <div class="step-node current">
-            <div class="node-dot"></div>
-            <span>Причина</span>
-        </div>
-        <a href="../b4/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future">
-            <div class="node-dot"></div>
-            <span>Масштаб</span>
-        </a>
-        <a href="../b6/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future">
-            <div class="node-dot"></div>
-            <span>Состав</span>
-        </a>
-        <a href="../demo/?utm_source=funnel&utm_medium=header&utm_campaign=st3" class="step-node future">
-            <div class="node-dot"></div>
-            <span>Решение</span>
-        </a>
+        <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
+        <a href="../b1/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
+        <div class="step-node passive"><div class="node-dot"></div><span>Сценарии</span></div>
+        <a href="../b3/?utm_source=funnel&utm_medium=header_back&utm_campaign=stage4" class="step-node passed"><div class="node-dot"></div><span>Разрыв</span></a>
+        <div class="step-node current"><div class="node-dot"></div><span>Причина</span></div>
+        <a href="../b4/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage4" class="step-node future"><div class="node-dot"></div><span>Масштаб</span></a>
+        <a href="../b6/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage4" class="step-node future"><div class="node-dot"></div><span>Состав</span></a>
+        <a href="../demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage4" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
     </div>
 
-    <!-- 3. СЦЕНА С ПОСТЕРАМИ -->
     <div class="stage-area" id="secureContainer">
-        <!-- Светлый постер -->
         <div class="slide-container poster-light">
             <img src="hero5.png" alt="От меня ждут уровень целого отдела" class="responsive-img">
-            <!-- Зона клика поверх алой плашки "ДОБАВЛЯЮТ ИИ" -->
             <div class="ai-trigger-zone" onclick="diveIntoAbyss()" title="Добавляют ИИ"></div>
         </div>
-        <!-- Тёмный постер -->
         <div class="slide-container poster-dark">
             <img src="hero6.png" alt="И технологии не спасают" class="responsive-img">
         </div>
     </div>
 
-    <!-- 4. ПОДВАЛ -->
     <footer class="premium-footer">
         <div class="footer-top-row">
             <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос">
-                <span>К</span>САЙЛОС
+                <img src="../logo-footer.png" alt="Ксайлос">
             </a>
             <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
         </div>
@@ -314,10 +276,7 @@
     </footer>
 
     <script>
-        // Блокировка правой кнопки мыши
         document.addEventListener('contextmenu', e => e.preventDefault());
-
-        // Блокировка комбинаций клавиш (Копировать, Сохранить, Печать, F12)
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
                 e.preventDefault();
@@ -327,11 +286,9 @@
             if (e.keyCode === 123) { e.preventDefault(); return false; }
         });
 
-        // Функция запуска анимации перехода (Эффект бездны)
         function diveIntoAbyss() {
             document.getElementById('secureContainer').classList.add('abyss');
         }
     </script>
-
 </body>
 </html>
