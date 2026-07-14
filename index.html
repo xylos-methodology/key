@@ -18,7 +18,6 @@
         }
 
         body { 
-            /* ЗАШИВАЕМ ТВОЙ ИНЖЕНЕРНЫЙ ФОН НА ВЕСЬ ЭКРАН НОУТБУКА */
             background-image: url('workspace-bg.jpg');
             background-repeat: no-repeat;
             background-position: center top;
@@ -33,20 +32,22 @@
             min-height: 100vh; 
         }
         
-        /* 1. СТЕРИЛЬНАЯ ШАПКА (TOP BAR) */
+        /* 1. СТЕРИЛЬНАЯ ИНЖЕНЕРНАЯ ШАПКА (TOP BAR) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
             box-sizing: border-box;
             background: #FFFFFF;
             padding: 10px 16px;
-            font-size: 9px;
+            font-size: 10px;
             letter-spacing: 0.06em;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #E6E9ED;
             margin-top: 20px;
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease forwards;
         }
         .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
         .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
@@ -68,6 +69,9 @@
             align-items: center; 
             border-bottom: 1px solid #DDE1E5; 
             position: relative; 
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease 0.15s forwards;
+            margin-top: 0;
         }
         .editorial-header::before { 
             content: ""; 
@@ -84,11 +88,16 @@
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
-        /* Текущий шаг Проблема */
-        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
+        /* Текущий шаг Проблема с пульсацией */
+        .step-node.current .node-dot { 
+            background-color: #B82E12; 
+            border-color: #B82E12; 
+            box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4);
+            animation: pulseGlow 2s infinite;
+        }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
         
-        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
+        .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; transform: scale(1.3); }
         .step-node.future:hover span { color: #B82E12; }
 
         /* 3. КОНТЕЙНЕР ДЛЯ СЛАЙДА ВОРОНКИ 3:4 */
@@ -97,12 +106,13 @@
             width: 100%; 
             position: relative; 
             background: #FFFFFF; 
-            box-shadow: 0 10px 50px rgba(0,0,0,0.15); 
-            margin: 0 auto; 
+            box-shadow: 0 12px 60px rgba(0,0,0,0.2); 
+            margin: 16px auto 0 auto;
+            opacity: 0;
+            animation: fadeScaleIn 0.5s ease 0.3s forwards;
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
         
-        /* НЕВИДИМАЯ ЗОНА КЛИКА */
         .clickable-zone { 
             position: absolute; 
             bottom: 4.8%; 
@@ -113,7 +123,7 @@
             cursor: pointer; 
         }
 
-        /* 5. ПОДВАЛ (ФУТЕР) */
+        /* 5. ПРЕМИАЛЬНЫЙ АСКЕТИЧНЫЙ ПОДВАЛ (ФУТЕР) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -123,18 +133,35 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
+            margin-top: 20px;
             margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeSlideDown 0.4s ease 0.5s forwards;
         }
         .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .footer-logo-link { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: #75B629; text-decoration: none; display: flex; align-items: center; transition: opacity 0.2s; }
-        .footer-logo-link span { color: #005A2B; } 
-        .footer-logo-link:hover { opacity: 0.8; }
+        .footer-logo-link { display: flex; align-items: center; text-decoration: none; transition: opacity 0.2s; }
+        .footer-logo-link img { height: 24px; width: auto; display: block; }
+        .footer-logo-link:hover { opacity: 0.85; }
         .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
-        
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        /* МОБИЛЬНАЯ АДАПТАЦИЯ (СЛОЖНЫЙ ФОН ОТКЛЮЧАЕТСЯ, ЧТОБЫ НЕ ПЕРЕГРУЖАТЬ ТЕЛЕФОН) */
+        /* АНИМАЦИИ */
+        @keyframes fadeSlideDown {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeScaleIn {
+            0% { opacity: 0; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(184, 46, 18, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0); }
+        }
+
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) { 
             body { background-image: none; background-color: #F8F9FA; } 
             .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
@@ -143,9 +170,18 @@
             .editorial-header::before { top: 17px; left: 20px; right: 20px; } 
             .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } 
             .step-node span { font-size: 8px; }
-            .premium-footer { padding: 20px 12px; }
-            .footer-logo-link { font-size: 11px; }
+            .premium-footer { padding: 20px 12px; margin-top: 10px; }
+            .footer-logo-link img { height: 20px; }
             .footer-copyright { font-size: 9px; }
+            /* Убираем анимации на мобилках для производительности */
+            .top-brand-bar, .editorial-header, .slide-container, .premium-footer {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .step-node.current .node-dot {
+                animation: none !important;
+            }
         }
 
         /* КИБЕРЗАЩИТА: ЩИТ ОТ ПЕЧАТИ В PDF */
@@ -193,13 +229,32 @@
         <a href="b1/" class="clickable-zone" title="Разобраться"></a>
     </div>
 
-    <!-- 5. ПОДВАЛ -->
+    <!-- 5. ПОДВАЛ (ФУТЕР) -->
     <footer class="premium-footer">
         <div class="footer-top-row">
-            <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос"><span>К</span>САЙЛОС</a>
+            <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос">
+                <img src="logo-footer.png" alt="Ксайлос">
+            </a>
             <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
         </div>
         <div class="footer-legal-shield">
             Материалы страницы являются объектом интеллектуальной собственности. Любое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
         </div>
         <div class="footer-expert-tag">Разработано методологическим бюро SlideCraft Pro для Ксайлос</div>
+    </footer>
+
+    <script>
+        // Блокировка правой кнопки мыши
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        // Блокировка комбинаций клавиш
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
+                e.preventDefault();
+                alert("Действие заблокировано политикой безопасности контента Ксайлос.");
+                return false;
+            }
+            if (e.keyCode === 123) { e.preventDefault(); return false; }
+        });
+    </script>
+</body>
+</html>
