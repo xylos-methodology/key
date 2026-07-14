@@ -44,8 +44,6 @@
             align-items: center;
             border-bottom: 1px solid #E6E9ED;
             margin-top: 20px;
-            opacity: 0;
-            animation: fadeSlideDown 0.4s ease forwards;
         }
         .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
         .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
@@ -66,8 +64,6 @@
             align-items: center; 
             border-bottom: 1px solid #DDE1E5; 
             position: relative; 
-            opacity: 0;
-            animation: fadeSlideDown 0.4s ease 0.15s forwards;
         }
         .editorial-header::before { 
             content: ""; 
@@ -84,18 +80,11 @@
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
-        /* Все предыдущие шаги — пройденные (чёрные) */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
 
-        /* Финальный шаг РЕШЕНИЕ — алый с пульсацией */
-        .step-node.current .node-dot { 
-            background-color: #B82E12; 
-            border-color: #B82E12; 
-            box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4);
-            animation: pulseGlow 2s infinite;
-        }
+        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
 
         .slide-container { 
@@ -105,8 +94,6 @@
             background: #FFFFFF; 
             box-shadow: 0 12px 60px rgba(0,0,0,0.2); 
             margin: 16px auto 0 auto;
-            opacity: 0;
-            animation: fadeScaleIn 0.5s ease 0.3s forwards;
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
         
@@ -131,8 +118,6 @@
             gap: 16px;
             margin-top: 20px;
             margin-bottom: 40px;
-            opacity: 0;
-            animation: fadeSlideDown 0.4s ease 0.5s forwards;
         }
         .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .footer-logo-link { display: flex; align-items: center; text-decoration: none; transition: opacity 0.2s; }
@@ -141,20 +126,6 @@
         .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
-
-        @keyframes fadeSlideDown {
-            0% { opacity: 0; transform: translateY(-10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeScaleIn {
-            0% { opacity: 0; transform: scale(0.98); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(184, 46, 18, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(184, 46, 18, 0); }
-        }
 
         @media (max-width: 768px) { 
             body { background-image: none; background-color: #F8F9FA; } 
@@ -167,12 +138,6 @@
             .premium-footer { padding: 20px 12px; margin-top: 10px; }
             .footer-logo-link img { height: 20px; }
             .footer-copyright { font-size: 9px; }
-            .top-brand-bar, .editorial-header, .slide-container, .premium-footer {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-            .step-node.current .node-dot { animation: none !important; }
         }
 
         @media print {
@@ -213,8 +178,8 @@
 
     <div class="slide-container">
         <img src="hero10.png" alt="Что даёт диагностика" class="responsive-img">
-        <!-- Ссылка на третью Яндекс Форму — пока плейсхолдер, замените на свою -->
-        <a href="СЮДА_ВСТАВИТЬ_ССЫЛКУ_НА_ТРЕТЬЮ_ЯНДЕКС_ФОРМУ" class="clickable-zone" title="Записаться на аудит" target="_blank"></a>
+        <!-- ВСТАВЬТЕ СЮДА ССЫЛКУ НА ТРЕТЬЮ ЯНДЕКС ФОРМУ -->
+        <a href="СЮДА_ВСТАВИТЬ_ССЫЛКУ" class="clickable-zone" title="Записаться на аудит" target="_blank"></a>
     </div>
 
     <footer class="premium-footer">
