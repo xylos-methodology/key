@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Страница 1</title>
+    <title>Карта доверия — Страница 1: Проблема</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* БЛОКИРОВКА ВЫДЕЛЕНИЯ ТЕКСТА И ЭЛЕМЕНТОВ НА САЙТЕ */
+        /* КИБЕРЗАЩИТА: БЛОКИРОВКА ВЫДЕЛЕНИЯ КОНТЕНТА И ЭЛЕМЕНТОВ */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -18,7 +18,12 @@
         }
 
         body { 
-            background-color: #25282B; 
+            /* ЗАШИВАЕМ ТВОЙ ИНЖЕНЕРНЫЙ ФОН НА ВЕСЬ ЭКРАН НОУТБУКА */
+            background-image: url('workspace-bg.jpg');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
             margin: 0; 
             padding: 0; 
             font-family: 'Inter', sans-serif; 
@@ -28,7 +33,7 @@
             min-height: 100vh; 
         }
         
-        /* СТЕРИЛЬНАЯ ИНЖЕНЕРНАЯ ШАПКА (TOP BAR) */
+        /* 1. СТЕРИЛЬНАЯ ШАПКА (TOP BAR) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -49,7 +54,7 @@
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* ИНЖЕНЕРНЫЙ ХЕДЕР НА КЛИКАБЕЛЬНЫХ НОДАХ */
+        /* 2. НАВИГАЦИОННЫЙ ХЕДЕР («ИНЖЕНЕРНЫЙ ПУНКТИР») */
         .editorial-header { 
             width: 100%; 
             max-width: 650px; 
@@ -79,33 +84,36 @@
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
         
+        /* Текущий шаг Проблема */
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
         
         .step-node.future:hover .node-dot { border-color: #B82E12; background-color: #B82E12; }
         .step-node.future:hover span { color: #B82E12; }
 
-        /* КОНТЕЙНЕР ДЛЯ МОНОЛИТНОГО ПЛАКАТА С АВТO-РАЗМЫТИЕМ */
+        /* 3. КОНТЕЙНЕР ДЛЯ СЛАЙДА ВОРОНКИ 3:4 */
         .slide-container { 
             max-width: 650px; 
             width: 100%; 
             position: relative; 
-            background: url('bg.jpg') repeat; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+            background: #FFFFFF; 
+            box-shadow: 0 10px 50px rgba(0,0,0,0.15); 
             margin: 0 auto; 
-            transition: filter 0.2s ease, opacity 0.2s ease;
         }
-        
-        /* ЭФФЕКТ ДЛЯ ЗАЩИТЫ ОТ СКРИНШОТОВ (BLUR SHIELD) */
-        .slide-container.blurred {
-            filter: blur(30px) grayscale(1);
-            opacity: 0.1;
-        }
-
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
-        .clickable-zone { position: absolute; bottom: 4.8%; left: 31%; width: 38%; height: 4.5%; display: block; cursor: pointer; }
+        
+        /* НЕВИДИМАЯ ЗОНА КЛИКА */
+        .clickable-zone { 
+            position: absolute; 
+            bottom: 4.8%; 
+            left: 31%; 
+            width: 38%; 
+            height: 4.5%; 
+            display: block; 
+            cursor: pointer; 
+        }
 
-        /* ПРЕМИАЛЬНЫЙ АСКЕТИЧНЫЙ ПОДВАЛ (ФУТЕР) */
+        /* 5. ПОДВАЛ (ФУТЕР) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -126,9 +134,9 @@
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ (СЛОЖНЫЙ ФОН ОТКЛЮЧАЕТСЯ, ЧТОБЫ НЕ ПЕРЕГРУЖАТЬ ТЕЛЕФОН) */
         @media (max-width: 768px) { 
-            body { background-color: url('bg.jpg') repeat; } 
+            body { background-image: none; background-color: #F8F9FA; } 
             .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
             .editorial-header { padding: 12px 4px; } 
@@ -140,7 +148,7 @@
             .footer-copyright { font-size: 9px; }
         }
 
-        /* МАКСИМАЛЬНАЯ ЗАЩИТА ОТ ПЕЧАТИ (CSS PRINT SHIELD) */
+        /* КИБЕРЗАЩИТА: ЩИТ ОТ ПЕЧАТИ В PDF */
         @media print {
             body, .top-brand-bar, .editorial-header, .slide-container, .premium-footer { display: none !important; }
             html::after {
@@ -161,14 +169,14 @@
 </head>
 <body>
 
-    <!-- ВЕРХНЯЯ ШАПКА -->
+    <!-- 1. ШАПКА -->
     <div class="top-brand-bar">
         <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
         <div class="owner-title">Учебный центр Ксайлос</div>
         <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
-    <!-- ВНУТРЕННИЙ ПУНКТИР С ЧИСТЫМИ UTM-МЕТКАМИ -->
+    <!-- 2. ХЕDЕР -->
     <div class="editorial-header">
         <div class="step-node current"><div class="node-dot"></div><span>Проблема</span></div>
         <a href="b1/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="step-node future"><div class="node-dot"></div><span>Симптомы</span></a>
@@ -179,27 +187,19 @@
         <a href="demo/?utm_source=funnel&utm_medium=header_forward&utm_campaign=stage1" class="step-node future"><div class="node-dot"></div><span>Решение</span></a>
     </div>
 
-    <!-- КОНТЕЙНЕР С ID ДЛЯ АВТO-РАЗМЫТИЯ -->
-    <div class="slide-container" id="secureContainer">
-        <img src="hero.png" alt="Проблема" class="responsive-img">
+    <!-- 3. СЛАЙД -->
+    <div class="slide-container">
+        <img src="hero.png" alt="Сильная команда выдает слабые презентации" class="responsive-img">
         <a href="b1/" class="clickable-zone" title="Разобраться"></a>
     </div>
 
-    <!-- ПОДВАЛ -->
+    <!-- 5. ПОДВАЛ -->
     <footer class="premium-footer">
         <div class="footer-top-row">
             <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос"><span>К</span>САЙЛОС</a>
             <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
         </div>
         <div class="footer-legal-shield">
-            Материалы страницы являются объектом интеллектуальной собственности. Люкое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
+            Материалы страницы являются объектом интеллектуальной собственности. Любое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
         </div>
-        <div class="footer-expert-tag">
-            Разработано методологическим бюро SlideCraft Pro для Ксайлос
-        </div>
-    </footer>
-
-    <!-- УКРЕПЛЕННЫЙ КИБЕР-ЗАСЛOН -->
-    <script>
-        const target = document.getElementById('secureContainer');
-
+        <div class="footer-expert-tag">Разработано методологическим бюро SlideCraft Pro для Ксайлос</div>
