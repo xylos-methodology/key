@@ -22,6 +22,7 @@
             background-position: center top;
             background-size: cover;
             background-attachment: fixed;
+            background-color: #25282B; /* базовый цвет на время загрузки */
             margin: 0; 
             padding: 0; 
             font-family: 'Inter', sans-serif; 
@@ -31,6 +32,12 @@
             min-height: 100vh; 
             overflow-y: auto;
             overflow-x: hidden;
+            transition: background-color 0.8s ease, background-image 0.8s ease;
+        }
+        /* При переходе в бездну фон становится чёрным */
+        body.abyss {
+            background-image: none !important;
+            background-color: #0E0F11 !important;
         }
         
         .top-brand-bar {
@@ -197,6 +204,7 @@
 
         @media (max-width: 768px) { 
             body { background-image: none; background-color: #25282B; } 
+            body.abyss { background-color: #0E0F11 !important; }
             .stage-area, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
             .editorial-header { padding: 12px 4px; } 
@@ -288,6 +296,7 @@
 
         function diveIntoAbyss() {
             document.getElementById('secureContainer').classList.add('abyss');
+            document.body.classList.add('abyss');
         }
     </script>
 </body>
