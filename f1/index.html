@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Чекап симптомов — Ксайлос</title>
+    <title>Чекап симптомов — Аудит процессов</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Яндекс Метрика -->
     <script>
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
         for (var j=0; j<document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        k=e.createElement(t), a=e.getElementsByTagName(t)[0], k.async=1, k.src=r, a.parentNode.insertBefore(k,a)})
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
         ym(110769765, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/110769765" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
     <style>
+        /* БАЗОВАЯ ЗАЩИТА: БЛОКИРОВКА ВЫДЕЛЕНИЯ */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -34,7 +35,11 @@
             -webkit-touch-callout: none;
         }
 
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
             background-image: url('../workspace-bg.jpg');
             background-repeat: no-repeat;
             background-position: center top;
@@ -44,14 +49,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            overflow-y: auto;
         }
 
-        /* ЛЁГКИЙ ХЕДЕР (как на основных страницах, но с названием опроса) */
+        /* 1. ЛЁГКАЯ ШАПКА (без хедера и футера) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
+            box-sizing: border-box;
             background: #FFFFFF;
             padding: 10px 16px;
             font-size: 10px;
@@ -63,125 +67,64 @@
             margin-top: 20px;
             flex-shrink: 0;
         }
-        .top-brand-bar .project-title {
-            font-weight: 700;
-            color: #1A1D1F;
-            letter-spacing: 0.15em;
-            font-size: 10px;
-        }
-        .top-brand-bar .owner-title {
-            font-weight: 500;
-            color: #71777E;
-            font-size: 10px;
-        }
-        .top-brand-bar .session-status {
-            font-weight: 600;
-            color: #108548;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 10px;
-        }
-        .top-brand-bar .session-status::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            background-color: #108548;
-            border-radius: 50%;
-            display: inline-block;
-            animation: blink 2s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 0.3; }
-            50% { opacity: 1; }
-            100% { opacity: 0.3; }
-        }
+        .top-brand-bar .form-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
+        .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
+        .top-brand-bar .session-status { font-weight: 600; color: #108548; display: flex; align-items: center; gap: 5px; }
+        .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* КОНТЕЙНЕР С ФОРМОЙ */
-        .form-container {
-            width: 100%;
+        /* 2. КОНТЕЙНЕР ДЛЯ БЕСШОВНОЙ ФОРМЫ (растягивается по содержимому) */
+        .iframe-container {
             max-width: 650px;
-            flex: 1;
+            width: 100%;
+            padding: 0 16px;
+            box-sizing: border-box;
+            flex: 1 0 auto;
             display: flex;
             justify-content: center;
-            padding: 0 16px 40px 16px;
-            box-sizing: border-box;
         }
 
-        .form-container iframe {
+        iframe {
             width: 100%;
             border: none;
             display: block;
-            background: transparent;
-            min-height: 600px;
-            height: auto;
+            min-height: 600px; /* минимальная высота для комфортного старта */
         }
 
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) {
-            body {
-                background-image: none;
-                background-color: #F8F9FA;
-            }
-            .top-brand-bar {
-                max-width: 100%;
-                margin-top: 0;
-                border-radius: 0;
-                font-size: 7.5px;
-                padding: 10px 8px;
-                flex-direction: column;
-                gap: 4px;
-                text-align: center;
-            }
-            .top-brand-bar .project-title,
-            .top-brand-bar .owner-title,
-            .top-brand-bar .session-status {
-                font-size: 7.5px;
-            }
-            .form-container {
-                max-width: 100%;
-                padding: 0 8px 20px 8px;
-            }
-            .form-container iframe {
-                min-height: 500px;
-            }
+            body { background-image: none; background-color: #F8F9FA; }
+            .top-brand-bar { max-width: 100%; margin-top: 0; border-radius: 0; font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
+            .iframe-container { max-width: 100%; padding: 0; }
+            iframe { min-height: 500px; }
         }
 
+        /* ЗАЩИТА ОТ ПЕЧАТИ */
         @media print {
-            body, .top-brand-bar, .form-container { display: none !important; }
-            html::after {
-                content: "МАТЕРИАЛ ЗАЩИЩЕН АВТОРСКИМ ПРАВОМ УЧЕБНОГО ЦЕНТРА КСАЙЛОС. ПЕЧАТЬ ЗАПРЕЩЕНА ПОЛИТИКОЙ БЕЗОПАСНОСТИ.";
-                font-family: 'Inter', sans-serif;
-                font-size: 14px;
-                color: #B82E12;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                text-align: center;
-                padding: 40px;
-            }
+            body { display: none !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ХЕДЕР -->
+    <!-- ШАПКА -->
     <div class="top-brand-bar">
-        <div class="project-title">ЧЕКАП СИМПТОМОВ</div>
+        <div class="form-title">ЧЕКАП СИМПТОМОВ</div>
         <div class="owner-title">Учебный центр Ксайлос</div>
         <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
-    <!-- ТЕЛО СТРАНИЦЫ — ФОРМА -->
-    <div class="form-container">
-        <iframe src="https://forms.yandex.ru/cloud/6a2fdca702848fae664c5da1?iframe=1" frameborder="0" name="ya-form-6a2fdca702848fae664c5da1" allow="fullscreen"></iframe>
+    <!-- КОНТЕЙНЕР С ФОРМОЙ -->
+    <div class="iframe-container">
+        <script src="https://forms.yandex.ru/_static/embed.js"></script>
+        <iframe src="https://forms.yandex.ru/cloud/6a2fdca702848fae664c5da1?iframe=1" frameborder="0" name="ya-form-6a2fdca702848fae664c5da1" width="650"></iframe>
     </div>
 
     <script>
-        // Защита: блокировка правой кнопки мыши
+        // БЛОКИРОВКА ПРАВОЙ КНОПКИ МЫШИ
         document.addEventListener('contextmenu', e => e.preventDefault());
-        // Защита: блокировка горячих клавиш (копирование, сохранение, печать, F12)
+
+        // БЛОКИРОВКА ГОРЯЧИХ КЛАВИШ
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
                 e.preventDefault();
@@ -191,5 +134,6 @@
             if (e.keyCode === 123) { e.preventDefault(); return false; }
         });
     </script>
+
 </body>
 </html>
