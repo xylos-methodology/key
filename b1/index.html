@@ -64,7 +64,7 @@
             margin-top: 20px;
         }
         .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
-        .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
+        /* owner-title удалён */
         .top-brand-bar .session-status { font-weight: 600; color: #108548; display: flex; align-items: center; gap: 5px; }
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
@@ -125,13 +125,13 @@
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
 
-        /* ЗОНА КЛИКА — ведёт на f1 (чекап) */
+        /* ИСПРАВЛЕННАЯ ЗОНА КЛИКА — ПОДНЯТА ВВЕРХ */
         .clickable-zone {
             position: absolute;
-            bottom: 2.3%;
+            bottom: 4.5%;      /* было 2.3% — подняли выше */
             left: 36%;
             width: 28%;
-            height: 3.2%;
+            height: 2.8%;      /* было 3.2% — чуть тоньше */
             display: block;
             cursor: pointer;
         }
@@ -192,7 +192,7 @@
 
     <div class="top-brand-bar">
         <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
-        <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
+        <div class="session-status">● ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
     <div class="editorial-header">
@@ -206,7 +206,7 @@
 
     <div class="slide-container" id="slideContainer">
         <img src="hero2.png" alt="Презентации: одинаковые симптомы — разные причины" class="responsive-img">
-        <a href="../f1/" class="clickable-zone" title="Пройти чекап" target="_blank"></a>
+        <a href="../f1/" class="clickable-zone" title="Пройти чекап"></a>
     </div>
 
     <footer class="premium-footer">
