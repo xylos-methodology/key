@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Сценарии старта — Ксайлос</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Яндекс Метрика -->
+    <script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j=0; j<document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(110769765, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/110769765" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body { 
+            background-image: url('../workspace-bg.jpg');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            overflow: hidden;
+        }
+
+        .top-brand-bar {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            padding: 10px 16px;
+            font-size: 10px;
+            letter-spacing: 0.06em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E6E9ED;
+            margin-top: 20px;
+            flex-shrink: 0;
+        }
+        .top-brand-bar .form-title { font-weight: 700; color: #B82E12; letter-spacing: 0.15em; }
+        .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
+        .top-brand-bar .session-status { font-weight: 600; color: #108548; display: flex; align-items: center; gap: 5px; }
+        .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
+        @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 650px;
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+        .form-wrapper iframe {
+            width: 100%;
+            height: calc(100vh - 120px);
+            min-height: 500px;
+            border: none;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) { 
+            body { background-image: none; background-color: #F8F9FA; } 
+            .top-brand-bar { max-width: 100%; font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; margin-top: 0; }
+            .form-wrapper { max-width: 100%; padding: 0 8px; }
+            .form-wrapper iframe { height: calc(100vh - 100px); min-height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-brand-bar">
+        <div class="form-title">СЦЕНАРИИ СТАРТА</div>
+        <div class="owner-title">Учебный центр Ксайлос</div>
+        <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
+    </div>
+
+    <div class="form-wrapper">
+        <iframe src="https://forms.yandex.ru/cloud/6a3a8b61d046884642ca2d65?iframe=1" frameborder="0" name="ya-form-6a3a8b61d046884642ca2d65" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
+                e.preventDefault();
+                alert("Действие заблокировано политикой безопасности контента Ксайлос.");
+                return false;
+            }
+            if (e.keyCode === 123) { e.preventDefault(); return false; }
+        });
+    </script>
+</body>
+</html>
