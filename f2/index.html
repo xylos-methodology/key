@@ -52,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* ЛЁГКАЯ ШАПКА */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -73,11 +72,10 @@
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* КОНТЕЙНЕР ФОРМЫ */
         .iframe-container {
             max-width: 650px;
             width: 100%;
-            padding: 0 16px;
+            padding: 0 16px 100px 16px; /* добавил нижний отступ */
             box-sizing: border-box;
             flex: 1 0 auto;
             display: flex;
@@ -92,7 +90,6 @@
             min-height: 600px;
         }
 
-        /* ПАРЯЩИЙ ЩИТ — ПЕРЕКРЫВАЕТ ПЛАШКУ ЯНДЕКСА */
         .anti-yandex-shield {
             position: fixed;
             bottom: 0;
@@ -108,7 +105,7 @@
         @media (max-width: 768px) {
             body { background-image: none; background-color: #F8F9FA; }
             .top-brand-bar { max-width: 100%; margin-top: 0; border-radius: 0; font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
-            .iframe-container { max-width: 100%; padding: 0; }
+            .iframe-container { max-width: 100%; padding: 0 0 80px 0; }
             iframe { min-height: 500px; }
             .anti-yandex-shield { height: 55px; }
         }
