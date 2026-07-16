@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Шаг 7: Решение</title>
+    <title>Карта доверия — Метод изменений</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Яндекс Метрика -->
+    <script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j=0; j<document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t), a=e.getElementsByTagName(t)[0], k.async=1, k.src=r, a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(110769765, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/110769765" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
     <style>
         * {
             -webkit-user-select: none;
@@ -16,22 +34,21 @@
             -webkit-touch-callout: none;
         }
 
-        body { 
+        body {
             background-image: url('../workspace-bg.jpg');
             background-repeat: no-repeat;
             background-position: center top;
             background-size: cover;
             background-attachment: fixed;
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Inter', sans-serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            min-height: 100vh; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        
-        /* ШАПКА — СТАТИЧНА, БЕЗ АНИМАЦИИ */
+
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -47,77 +64,68 @@
             margin-top: 20px;
         }
         .top-brand-bar .project-title { font-weight: 700; color: #1A1D1F; letter-spacing: 0.15em; }
-        .top-brand-bar .owner-title { font-weight: 500; color: #71777E; }
         .top-brand-bar .session-status { font-weight: 600; color: #108548; display: flex; align-items: center; gap: 5px; }
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* ХЕДЕР — СТАТИЧЕН, БЕЗ АНИМАЦИИ */
-        .editorial-header { 
-            width: 100%; 
-            max-width: 650px; 
-            box-sizing: border-box; 
-            background: #F1F3F5; 
-            padding: 16px 16px; 
-            font-size: 10px; 
-            letter-spacing: 0.05em; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #DDE1E5; 
-            position: relative; 
+        .editorial-header {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #F1F3F5;
+            padding: 16px 16px;
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #DDE1E5;
+            position: relative;
         }
-        .editorial-header::before { 
-            content: ""; 
-            position: absolute; 
-            top: 21px; 
-            left: 35px; 
-            right: 35px; 
-            height: 1px; 
-            border-top: 1px dashed #CDD2D7; 
-            z-index: 1; 
+        .editorial-header::before {
+            content: "";
+            position: absolute;
+            top: 21px;
+            left: 35px;
+            right: 35px;
+            height: 1px;
+            border-top: 1px dashed #CDD2D7;
+            z-index: 1;
         }
-        
-        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14%; }
+
+        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14.28%; }
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
-        
+
+        /* Все предыдущие шаги — пройденные (чёрные) */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
 
-        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184, 46, 18, 0.2); }
+        /* Финальный шаг МЕТОД — алый */
+        .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184,46,18,0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
 
-        /* СЛАЙД — ЕДИНСТВЕННЫЙ ЭЛЕМЕНТ С АНИМАЦИЕЙ ПОЯВЛЕНИЯ */
-        .slide-container { 
-            max-width: 650px; 
-            width: 100%; 
-            position: relative; 
-            background: #FFFFFF; 
-            box-shadow: 0 12px 60px rgba(0,0,0,0.2); 
+        .slide-container {
+            max-width: 650px;
+            width: 100%;
+            position: relative;
+            background: #FFFFFF;
+            box-shadow: 0 12px 60px rgba(0,0,0,0.2);
             margin: 16px auto 0 auto;
-            opacity: 0;
-            animation: fadeIn 0.6s ease 0.2s forwards;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(6px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
-        
-        .clickable-zone { 
-            position: absolute; 
-            bottom: 3.5%; 
-            left: 20%; 
-            width: 60%; 
-            height: 5%; 
-            display: block; 
-            cursor: pointer; 
+
+        .clickable-zone {
+            position: absolute;
+            bottom: 3.2%;
+            left: 17%;
+            width: 66%;
+            height: 5.0%;
+            display: block;
+            cursor: pointer;
         }
 
-        /* ФУТЕР — СТАТИЧЕН, БЕЗ АНИМАЦИИ */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -127,7 +135,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-top: 20px;
+            margin-top: 24px;
             margin-bottom: 40px;
         }
         .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
@@ -138,22 +146,18 @@
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
         .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
 
-        @media (max-width: 768px) { 
-            body { background-image: none; background-color: #F8F9FA; } 
-            .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; } 
+        @media (max-width: 768px) {
+            body { background-image: none; background-color: #F8F9FA; }
+            .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; }
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
-            .editorial-header { padding: 12px 4px; } 
-            .editorial-header::before { top: 17px; left: 20px; right: 20px; } 
-            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; } 
+            .editorial-header { padding: 12px 4px; }
+            .editorial-header::before { top: 17px; left: 20px; right: 20px; }
+            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; }
             .step-node span { font-size: 8px; }
-            .premium-footer { padding: 20px 12px; margin-top: 10px; }
+            .premium-footer { padding: 20px 12px; margin-top: 16px; }
             .footer-logo-link img { height: 20px; }
             .footer-copyright { font-size: 9px; }
-            .slide-container {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
+            .slide-container { margin-top: 0; }
         }
 
         @media print {
@@ -178,8 +182,7 @@
 
     <div class="top-brand-bar">
         <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
-        <div class="owner-title">Учебный центр Ксайлос</div>
-        <div class="session-status">ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
+        <div class="session-status">● ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
     <div class="editorial-header">
@@ -189,13 +192,12 @@
         <a href="../p1/" class="step-node passed"><div class="node-dot"></div><span>Причина</span></a>
         <a href="../b4/" class="step-node passed"><div class="node-dot"></div><span>Масштаб</span></a>
         <a href="../b6/" class="step-node passed"><div class="node-dot"></div><span>Состав</span></a>
-        <div class="step-node current"><div class="node-dot"></div><span>Решение</span></div>
+        <div class="step-node current"><div class="node-dot"></div><span>Метод</span></div>
     </div>
 
     <div class="slide-container">
-        <img src="hero10.png" alt="Что даёт диагностика" class="responsive-img">
-        <!-- ВСТАВЬТЕ СЮДА ССЫЛКУ НА ТРЕТЬЮ ЯНДЕКС ФОРМУ -->
-        <a href="СЮДА_ВСТАВИТЬ_ССЫЛКУ" class="clickable-zone" title="Записаться на аудит" target="_blank"></a>
+        <img src="hero10.png" alt="5 артефактов диагностики Ксайлос" class="responsive-img">
+        <a href="../f3/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Записаться на демо-встречу"></a>
     </div>
 
     <footer class="premium-footer">
@@ -213,6 +215,7 @@
 
     <script>
         document.addEventListener('contextmenu', e => e.preventDefault());
+
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
                 e.preventDefault();
