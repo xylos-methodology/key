@@ -75,12 +75,13 @@
         .iframe-container {
             max-width: 650px;
             width: 100%;
-            padding: 0 16px 150px 16px; /* увеличен отступ */
+            padding: 0 16px 80px 16px;
             box-sizing: border-box;
             flex: 1 0 auto;
             display: flex;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
         iframe {
@@ -88,26 +89,15 @@
             border: none;
             display: block;
             min-height: 600px;
-        }
-
-        .anti-yandex-shield {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 80px; /* увеличена высота */
-            background-color: #F8F9FA;
-            z-index: 9999;
-            pointer-events: none;
-            border-top: 1px solid #F8F9FA;
+            /* ОБРЕЗАЕМ НИЖНЮЮ ЧАСТЬ IFRAME */
+            clip-path: inset(0 0 80px 0);
         }
 
         @media (max-width: 768px) {
             body { background-image: none; background-color: #F8F9FA; }
             .top-brand-bar { max-width: 100%; margin-top: 0; border-radius: 0; font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
-            .iframe-container { max-width: 100%; padding: 0 0 120px 0; }
-            iframe { min-height: 500px; }
-            .anti-yandex-shield { height: 70px; }
+            .iframe-container { max-width: 100%; padding: 0 0 60px 0; }
+            iframe { min-height: 500px; clip-path: inset(0 0 60px 0); }
         }
 
         @media print {
@@ -126,8 +116,6 @@
         <script src="https://forms.yandex.ru/_static/embed.js"></script>
         <iframe src="https://forms.yandex.ru/cloud/6a3a8b61d046884642ca2d65?iframe=1" frameborder="0" name="ya-form-6a3a8b61d046884642ca2d65" width="650"></iframe>
     </div>
-
-    <div class="anti-yandex-shield"></div>
 
     <script>
         document.addEventListener('contextmenu', e => e.preventDefault());
