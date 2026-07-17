@@ -52,7 +52,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. ШАПКА (Top Bar) */
+        /* 1. ШАПКА */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -154,7 +154,7 @@
             cursor: default;
         }
 
-        /* 3. ОСНОВНОЙ КОНТЕЙНЕР (контент) */
+        /* 3. ОСНОВНОЙ КОНТЕЙНЕР */
         .thank-you-container {
             max-width: 650px;
             width: 100%;
@@ -296,42 +296,26 @@
             color: #B82E12;
             text-align: center;
             line-height: 1.4;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
             padding: 20px 0;
             border-top: 1px solid #DDE1E5;
             border-bottom: 1px solid #DDE1E5;
         }
 
-        /* КНОПКА ВЫБОРА ВРЕМЕНИ */
-        .cta-button {
-            display: inline-block;
-            background: #B82E12;
-            color: #FFFFFF;
+        /* НОВЫЙ БЛОК — СВЯЗЬ С МЕНЕДЖЕРОМ (вместо кнопки) */
+        .manager-contact {
+            text-align: center;
+            padding: 8px 0 0 0;
+        }
+        .manager-contact p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #25282B;
+            margin: 0 0 4px 0;
+        }
+        .manager-contact .highlight {
             font-weight: 600;
-            font-size: 18px;
-            padding: 16px 40px;
-            border-radius: 4px;
-            text-decoration: none;
-            text-align: center;
-            transition: background 0.2s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .cta-button:hover {
-            background: #9E2610;
-        }
-
-        .cta-wrapper {
-            text-align: center;
-            margin: 8px 0 0 0;
-        }
-        .cta-note {
-            font-size: 12px;
-            color: #6B7280;
-            margin-top: 8px;
-            text-align: center;
+            color: #B82E12;
         }
 
         /* 5. ПОДВАЛ (ФУТЕР) */
@@ -372,7 +356,7 @@
             .step-item .step-text { font-size: 13px; }
             .what-you-see ul li, .checklist ul li { font-size: 13px; }
             .final-thought { font-size: 16px; padding: 16px 0; }
-            .cta-button { font-size: 16px; padding: 14px 20px; }
+            .manager-contact p { font-size: 15px; }
             .premium-footer { padding: 20px 12px; margin-top: 16px; }
             .footer-logo-link img { height: 20px; }
             .footer-copyright { font-size: 9px; }
@@ -391,7 +375,7 @@
         <div class="session-status">● ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
-    <!-- 2. ПОЛНЫЙ ПАРАДНЫЙ ХЕДЕР (7 НОД) -->
+    <!-- 2. ХЕДЕР (ПОЛНЫЙ ПАРАДНЫЙ) -->
     <div class="editorial-header">
         <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
         <a href="../b1/" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
@@ -462,16 +446,10 @@
             Прежде чем инвестировать время и бюджет в обучение, полезно понять, какую проблему действительно нужно решать. Именно для этого и существует аудит презентационных практик.
         </div>
 
-        <!-- КНОПКА ВЫБОРА ВРЕМЕНИ -->
-        <div class="cta-wrapper">
-            <a href="https://calendly.com/your-link" class="cta-button" data-metric="choose_time" target="_blank">
-                Выбрать время в календаре
-            </a>
-            <div class="cta-note">Выберите удобное время — мы подтвердим встречу в течение часа</div>
-        </div>
-
-        <div style="margin-top: 24px; font-size: 14px; color: #6B7280; text-align: center; border-top: 1px solid #DDE1E5; padding-top: 16px;">
-            Если до встречи появятся вопросы, вы всегда можете связаться с нами — мы с удовольствием всё расскажем.
+        <!-- НОВЫЙ БЛОК — БЕЗ КНОПКИ, ТОЛЬКО ТЕКСТ О СВЯЗИ С МЕНЕДЖЕРОМ -->
+        <div class="manager-contact">
+            <p><span class="highlight">Наш менеджер свяжется с вами в ближайшее время</span>, чтобы согласовать удобную дату и время встречи. Обычно это занимает не более 2 часов.</p>
+            <p style="font-size: 14px; color: #6B7280; margin-top: 8px;">Если до встречи появятся вопросы, вы всегда можете связаться с нами — мы с удовольствием всё расскажем.</p>
         </div>
 
     </div>
