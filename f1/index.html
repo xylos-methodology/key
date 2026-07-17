@@ -26,7 +26,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/110769765" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
     <style>
-        /* КИБЕРЗАЩИТА: БЛОКИРОВКА ВЫДЕЛЕНИЯ ТЕКСТА И ЭЛЕМЕНТОВ */
+        /* ПОЛНАЯ ЗАЩИТА: запрет выделения, копирования, контекстного меню */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -53,7 +53,7 @@
             overflow-x: hidden;
         }
 
-        /* ЛЁГКАЯ ШАПКА (без «Учебный центр Ксайлос») */
+        /* ЛЁГКАЯ ШАПКА (без Учебный центр Ксайлос) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -93,7 +93,7 @@
             min-height: 600px;
         }
 
-        /* ЖИВОЙ ПАРЯЩИЙ ЩИТ — 42px, перекрывает брендинг Яндекса */
+        /* ЖИВОЙ ПАРЯЩИЙ ЩИТ — СКРЫВАЕТ ПЛАШКУ ЯНДЕКСА, НЕ МЕШАЕТ КНОПКАМ */
         .floating-anti-yandex-shield {
             position: fixed;
             bottom: 0;
@@ -106,7 +106,7 @@
             border-top: 1px solid #F8F9FA;
         }
 
-        /* СТАНДАРТНЫЙ ПРЕМИАЛЬНЫЙ ФУТЕР (как на других страницах) */
+        /* СТАНДАРТНЫЙ ФУТЕР (как на всех страницах) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -145,18 +145,22 @@
 </head>
 <body>
 
+    <!-- ШАПКА -->
     <div class="top-brand-bar">
         <div class="form-title">ЧЕКАП СИМПТОМОВ</div>
         <div class="session-status">● ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
     </div>
 
+    <!-- КОНТЕЙНЕР ФОРМЫ -->
     <div class="iframe-container">
         <script src="https://forms.yandex.ru/_static/embed.js"></script>
         <iframe src="https://forms.yandex.ru/cloud/6a2fdca702848fae664c5da1?iframe=1" frameborder="0" name="ya-form-6a2fdca702848fae664c5da1" width="650"></iframe>
     </div>
 
+    <!-- ЖИВОЙ ЩИТ -->
     <div class="floating-anti-yandex-shield"></div>
 
+    <!-- ФУТЕР -->
     <footer class="premium-footer">
         <div class="footer-top-row">
             <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос">
@@ -174,7 +178,7 @@
         // БЛОКИРОВКА ПРАВОЙ КНОПКИ МЫШИ
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // БЛОКИРОВКА ГОРЯЧИХ КЛАВИШ (Копировать, Сохранить, Печать, Исходный код, F12)
+        // БЛОКИРОВКА ГОРЯЧИХ КЛАВИШ (Ctrl+C, Ctrl+S, Ctrl+P, F12 и др.)
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
                 e.preventDefault();
