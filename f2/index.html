@@ -26,6 +26,7 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/110769765" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
     <style>
+        /* ПОЛНАЯ ЗАЩИТА: запрет выделения, копирования, контекстного меню */
         * {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -52,7 +53,6 @@
             overflow-x: hidden;
         }
 
-        /* ЛЁГКАЯ ШАПКА (без Учебный центр Ксайлос) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -91,7 +91,6 @@
             min-height: 600px;
         }
 
-        /* ЖИВОЙ ПАРЯЩИЙ ЩИТ — 42px, не мешает кнопкам */
         .floating-anti-yandex-shield {
             position: fixed;
             bottom: 0;
@@ -104,12 +103,35 @@
             border-top: 1px solid #F8F9FA;
         }
 
+        .premium-footer {
+            width: 100%;
+            max-width: 650px;
+            box-sizing: border-box;
+            background: #1A1D1F;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
+            margin-bottom: 40px;
+        }
+        .footer-top-row { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .footer-logo-link { display: flex; align-items: center; text-decoration: none; transition: opacity 0.2s; }
+        .footer-logo-link img { height: 24px; width: auto; display: block; }
+        .footer-logo-link:hover { opacity: 0.85; }
+        .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
+        .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
+        .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
+
         @media (max-width: 768px) {
             body { background-image: none; background-color: #F8F9FA; }
             .top-brand-bar { max-width: 100%; margin-top: 0; border-radius: 0; font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
             .iframe-container { max-width: 100%; padding: 0 0 20px 0; }
             iframe { min-height: 500px; }
             .floating-anti-yandex-shield { height: 36px; }
+            .premium-footer { padding: 20px 12px; margin-top: 16px; }
+            .footer-logo-link img { height: 20px; }
+            .footer-copyright { font-size: 9px; }
         }
 
         @media print {
@@ -131,8 +153,22 @@
 
     <div class="floating-anti-yandex-shield"></div>
 
+    <footer class="premium-footer">
+        <div class="footer-top-row">
+            <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос">
+                <img src="../logo-footer.png" alt="Ксайлос">
+            </a>
+            <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
+        </div>
+        <div class="footer-legal-shield">
+            Материалы страницы являются объектом интеллектуальной собственности. Любое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
+        </div>
+        <div class="footer-expert-tag">Разработано методологическим бюро SlideCraft Pro для Ксайлос</div>
+    </footer>
+
     <script>
         document.addEventListener('contextmenu', e => e.preventDefault());
+
         document.addEventListener('keydown', function(e) {
             if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
                 e.preventDefault();
