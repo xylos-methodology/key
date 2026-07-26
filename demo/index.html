@@ -51,7 +51,6 @@
             overflow-x: hidden;
         }
 
-        /* ШАПКА (без owner-title) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -71,7 +70,6 @@
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-        /* ХЕДЕР (7 нод, МЕТОД — активная) */
         .editorial-header {
             width: 100%;
             max-width: 650px;
@@ -120,7 +118,6 @@
         .step-node.passive .node-dot { border-color: #A1A8B0; background-color: #FFF; cursor: default; }
         .step-node.passive span { color: #A1A8B0; cursor: default; }
 
-        /* КОНТЕЙНЕР ПЛАКАТА 3:4 */
         .slide-container {
             max-width: 650px;
             width: 100%;
@@ -131,7 +128,6 @@
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
 
-        /* ЗОНА КЛИКА — СНАЙПЕРСКИЕ КООРДИНАТЫ ДЛЯ КНОПКИ "ПОСМОТРЕТЬ АРТЕФАКТЫ" */
         .clickable-zone {
             position: absolute;
             bottom: 4.8%;
@@ -142,7 +138,6 @@
             cursor: pointer;
         }
 
-        /* ФУТЕР (полный) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -214,6 +209,7 @@
 
     <div class="slide-container">
         <img src="hero10.png" alt="Мы исследуем, как сотрудник превращает задачу в презентацию" class="responsive-img">
+        <!-- КНОПКА ВЕДЁТ НА ../artifacts/ (СТРАНИЦА С 5 АРТЕФАКТАМИ) -->
         <a href="../artifacts/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Посмотреть артефакты"></a>
     </div>
 
