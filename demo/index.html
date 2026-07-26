@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Карта доверия — Метод изменений</title>
+    <title>Карта доверия — Метод Ксайлос</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,8 +47,11 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
+        /* ШАПКА (без owner-title) */
         .top-brand-bar {
             width: 100%;
             max-width: 650px;
@@ -68,6 +71,7 @@
         .top-brand-bar .session-status::before { content: ""; width: 5px; height: 5px; background-color: #108548; border-radius: 50%; display: inline-block; animation: blink 2s infinite; }
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
+        /* ХЕДЕР (7 нод, МЕТОД — активная) */
         .editorial-header {
             width: 100%;
             max-width: 650px;
@@ -93,19 +97,30 @@
             z-index: 1;
         }
 
-        .step-node { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 2; text-decoration: none; width: 14.28%; }
+        .step-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            text-decoration: none;
+            width: 14.28%;
+        }
         .node-dot { width: 6px; height: 6px; background-color: #FFF; border: 2px solid #A1A8B0; border-radius: 50%; margin-bottom: 6px; transition: all 0.3s ease; }
         .step-node span { color: #A1A8B0; font-weight: 600; transition: color 0.3s; text-align: center; font-size: 10px; }
 
-        /* Все предыдущие шаги — пройденные (чёрные) */
         .step-node.passed .node-dot { background-color: #25282B; border-color: #25282B; }
         .step-node.passed span { color: #25282B; }
         .step-node.passed:hover span { color: #B82E12; }
+        .step-node.passed:hover .node-dot { border-color: #B82E12; background-color: #B82E12; transform: scale(1.3); }
 
-        /* Финальный шаг МЕТОД — алый */
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184,46,18,0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
 
+        .step-node.passive .node-dot { border-color: #A1A8B0; background-color: #FFF; cursor: default; }
+        .step-node.passive span { color: #A1A8B0; cursor: default; }
+
+        /* КОНТЕЙНЕР ПЛАКАТА 3:4 */
         .slide-container {
             max-width: 650px;
             width: 100%;
@@ -116,16 +131,18 @@
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
 
+        /* ЗОНА КЛИКА — СНАЙПЕРСКИЕ КООРДИНАТЫ ДЛЯ КНОПКИ "ПОСМОТРЕТЬ АРТЕФАКТЫ" */
         .clickable-zone {
             position: absolute;
-            bottom: 3.2%;
-            left: 17%;
-            width: 66%;
-            height: 5.0%;
+            bottom: 4.8%;
+            left: 60%;
+            width: 34%;
+            height: 4.2%;
             display: block;
             cursor: pointer;
         }
 
+        /* ФУТЕР (полный) */
         .premium-footer {
             width: 100%;
             max-width: 650px;
@@ -148,7 +165,7 @@
 
         @media (max-width: 768px) {
             body { background-image: none; background-color: #F8F9FA; }
-            .slide-container, .top-brand-bar, .editorial-header, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; }
+            .top-brand-bar, .editorial-header, .slide-container, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; }
             .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
             .editorial-header { padding: 12px 4px; }
             .editorial-header::before { top: 17px; left: 20px; right: 20px; }
@@ -196,8 +213,8 @@
     </div>
 
     <div class="slide-container">
-        <img src="hero10.png" alt="5 артефактов диагностики Ксайлос" class="responsive-img">
-        <a href="../f3/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Записаться на демо-встречу"></a>
+        <img src="hero10.png" alt="Мы исследуем, как сотрудник превращает задачу в презентацию" class="responsive-img">
+        <a href="../artifacts/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Посмотреть артефакты"></a>
     </div>
 
     <footer class="premium-footer">
@@ -225,5 +242,6 @@
             if (e.keyCode === 123) { e.preventDefault(); return false; }
         });
     </script>
+
 </body>
 </html>
