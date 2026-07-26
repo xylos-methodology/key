@@ -123,7 +123,7 @@
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
 
-        /* ЗОНА КЛИКА НА КНОПКУ ЗАПИСИ НА ВСТРЕЧУ */
+        /* ИСПРАВЛЕННАЯ ЗОНА КЛИКА — КНОПКА "ЗАПИСАТЬСЯ НА ДЕМО-ВСТРЕЧУ" ВЕДЁТ НА ../f3/ */
         .clickable-zone {
             position: absolute;
             bottom: 3.5%;
@@ -152,88 +152,4 @@
         .footer-logo-link:hover { opacity: 0.85; }
         .footer-copyright { font-size: 10px; font-weight: 500; color: #71777E; }
         .footer-legal-shield { font-size: 9px; line-height: 1.5; color: #53575A; border-top: 1px solid #2F3336; padding-top: 12px; text-align: justify; }
-        .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 100%; display: block; }
-
-        @media (max-width: 768px) {
-            body { background-image: none; background-color: #F8F9FA; }
-            .top-brand-bar, .editorial-header, .slide-container, .premium-footer { max-width: 100%; box-shadow: none; margin-top: 0; margin-bottom: 0; border-radius: 0; }
-            .top-brand-bar { font-size: 7.5px; padding: 10px 8px; flex-direction: column; gap: 4px; text-align: center; }
-            .editorial-header { padding: 12px 4px; }
-            .editorial-header::before { top: 17px; left: 20px; right: 20px; }
-            .node-dot { width: 4px; height: 4px; margin-bottom: 4px; }
-            .step-node span { font-size: 8px; }
-            .premium-footer { padding: 20px 12px; margin-top: 16px; }
-            .footer-logo-link img { height: 20px; }
-            .footer-copyright { font-size: 9px; }
-            .slide-container { margin-top: 0; }
-        }
-
-        @media print {
-            body, .top-brand-bar, .editorial-header, .slide-container, .premium-footer { display: none !important; }
-            html::after {
-                content: "МАТЕРИАЛ ЗАЩИЩЕН АВТОРСКИМ ПРАВОМ УЧЕБНОГО ЦЕНТРА КСАЙЛОС. ПЕЧАТЬ ЗАПРЕЩЕНА ПОЛИТИКОЙ БЕЗОПАСНОСТИ.";
-                font-family: 'Inter', sans-serif;
-                font-size: 14px;
-                color: #B82E12;
-                font-weight: bold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100vh;
-                text-align: center;
-                padding: 40px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="top-brand-bar">
-        <div class="project-title">АУДИТ ПРЕЗЕНТАЦИОННЫХ ПРОЦЕССОВ</div>
-        <div class="session-status">● ИССЛЕДОВАНИЕ В ПРОЦЕССЕ</div>
-    </div>
-
-    <div class="editorial-header">
-        <a href="../" class="step-node passed"><div class="node-dot"></div><span>Проблема</span></a>
-        <a href="../b1/" class="step-node passed"><div class="node-dot"></div><span>Симптомы</span></a>
-        <a href="../b3/" class="step-node passed"><div class="node-dot"></div><span>Разрыв</span></a>
-        <a href="../p1/" class="step-node passed"><div class="node-dot"></div><span>Причина</span></a>
-        <a href="../b4/" class="step-node passed"><div class="node-dot"></div><span>Масштаб</span></a>
-        <a href="../b6/" class="step-node passed"><div class="node-dot"></div><span>Состав</span></a>
-        <div class="step-node current"><div class="node-dot"></div><span>Метод</span></div>
-    </div>
-
-    <div class="slide-container">
-        <!-- КАРТИНКА С 5 АРТЕФАКТАМИ -->
-        <img src="hero11.png" alt="5 артефактов диагностики" class="responsive-img">
-        <!-- КНОПКА ВЕДЁТ НА ФОРМУ ЗАПИСИ f3 -->
-        <a href="../f3/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Записаться на демо-встречу"></a>
-    </div>
-
-    <footer class="premium-footer">
-        <div class="footer-top-row">
-            <a href="https://xylos.ru" class="footer-logo-link" target="_blank" title="Перейти на официальный сайт Ксайлос">
-                <img src="../logo-footer.png" alt="Ксайлос">
-            </a>
-            <div class="footer-copyright">© 2026 Учебный центр Ксайлос. Все права защищены.</div>
-        </div>
-        <div class="footer-legal-shield">
-            Материалы страницы являются объектом интеллектуальной собственности. Любое копирование, тиражирование или распространение контента без письменного согласия правообладателя влечет за собой административную и уголовную ответственность согласно законодательству РФ.
-        </div>
-        <div class="footer-expert-tag">Разработано методологическим бюро SlideCraft Pro для Ксайлос</div>
-    </footer>
-
-    <script>
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && (e.keyCode === 67 || e.keyCode === 83 || e.keyCode === 80 || e.keyCode === 85 || e.keyCode === 73)) {
-                e.preventDefault();
-                alert("Действие заблокировано политикой безопасности контента Ксайлос.");
-                return false;
-            }
-            if (e.keyCode === 123) { e.preventDefault(); return false; }
-        });
-    </script>
-</body>
-</html>
+        .footer-expert-tag { font-size: 9px; font-weight: 600; color: #43474A; text-align: right; width: 
