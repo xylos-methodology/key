@@ -113,9 +113,6 @@
         .step-node.current .node-dot { background-color: #B82E12; border-color: #B82E12; box-shadow: 0 0 0 3px rgba(184,46,18,0.2); }
         .step-node.current span { color: #B82E12; font-weight: 700; text-transform: uppercase; }
 
-        .step-node.passive .node-dot { border-color: #A1A8B0; background-color: #FFF; cursor: default; }
-        .step-node.passive span { color: #A1A8B0; cursor: default; }
-
         .slide-container {
             max-width: 650px;
             width: 100%;
@@ -126,6 +123,7 @@
         }
         .responsive-img { width: 100%; height: auto; display: block; margin: 0 auto; pointer-events: none; }
 
+        /* ЗОНА КЛИКА НА КНОПКУ ЗАПИСИ НА ВСТРЕЧУ */
         .clickable-zone {
             position: absolute;
             bottom: 3.5%;
@@ -206,9 +204,9 @@
     </div>
 
     <div class="slide-container">
-        <!-- СЮДА ВСТАВЬТЕ КАРТИНКУ С 5 АРТЕФАКТАМИ (НАПРИМЕР, hero11.png) -->
+        <!-- КАРТИНКА С 5 АРТЕФАКТАМИ -->
         <img src="hero11.png" alt="5 артефактов диагностики" class="responsive-img">
-        <!-- КНОПКА ВЕДЁТ НА ФОРМУ ЗАПИСИ (f3) -->
+        <!-- КНОПКА ВЕДЁТ НА ФОРМУ ЗАПИСИ f3 -->
         <a href="../f3/?utm_source=funnel&utm_medium=content_forward&utm_campaign=key" class="clickable-zone" title="Записаться на демо-встречу"></a>
     </div>
 
@@ -237,6 +235,5 @@
             if (e.keyCode === 123) { e.preventDefault(); return false; }
         });
     </script>
-
 </body>
 </html>
